@@ -13,7 +13,7 @@ h1 {
 }
 .header {
   background: #20232a;
-  min-height: 70px;
+  min-height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -22,10 +22,12 @@ h1 {
   display: flex;
 }
 .hrd__nav__ul li {
-  height: 20px;
+  height: 50px;
   display: flex;
   padding: 0 20px;
   border-right: 1px solid #61dafb;
+  position: relative;
+  align-items: center;
 }
 .hrd__nav__ul li:last-child {
   border-right: none;
@@ -36,4 +38,22 @@ h1 {
 }
 .hrd__nav__ul li a.active {
   color: #ffe;
+}
+.hrd__nav__ul li a:hover {
+  color: #ffe;
+}
+.hrd__nav__ul li ul {
+  position: absolute;
+  background: #20232a;
+  top: 50px;
+  display: none;
+}
+.hrd__nav__ul li:hover ul {
+  display: block;
+}
+.hrd__nav__ul li > ul li {
+  padding: 20px;
+  height: 60px;
+  border: 1px solid #61dafb;
+  background: hsl(222, 15%, 23%);
 }

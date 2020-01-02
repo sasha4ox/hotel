@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 var firebaseConfig = {
   apiKey: 'AIzaSyCPUJEaiVrlHBHz7yjKKlISurod4rCfA00',
   authDomain: 'hotel-a7493.firebaseapp.com',
