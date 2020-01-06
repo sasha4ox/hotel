@@ -57,3 +57,26 @@ h1 {
   border: 1px solid #61dafb;
   background: hsl(222, 15%, 23%);
 }
+.wrapper__room {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.room__img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.room__description {
+  display: flex;
+  width: 100%;
+}
+.room_descr_r,
+.room_descr_l {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

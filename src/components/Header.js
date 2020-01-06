@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
 import firebase from '../firebase';
 import Contacts from './Contacts';
 import Home from './Home';
@@ -11,7 +11,9 @@ import PrivateRoute from '../PrivateRoute';
 import SignUp from './SignUp';
 import Login from './Login';
 import { AuthContext } from '../Auth';
+import ExactRoom from './ExactRoom';
 function Header() {
+  let match = useRouteMatch();
   const { currentUser } = useContext(AuthContext);
   const handleSignOut = e => {
     e.preventDefault();
@@ -19,9 +21,9 @@ function Header() {
   };
   const signOut = !!currentUser ? (
     <li>
-      <a href="#" onClick={handleSignOut}>
+      <button rel="nofollow" onClick={handleSignOut}>
         Выйти
-      </a>
+      </button>
     </li>
   ) : null;
 
@@ -65,13 +67,13 @@ function Header() {
         </nav>
       </header>
       <Switch>
+        <Route path={`/rooms/:id`} component={ExactRoom} />
         <Route path="/contacts">
           <Contacts />
         </Route>
         <Route path="/signUp">
           <SignUp />
         </Route>
-        <PrivateRoute path="/rooms" component={Rooms}></PrivateRoute>
         <Route path="/rooms/one">
           <OneRoom />
         </Route>
@@ -87,6 +89,7 @@ function Header() {
         <Route path="/" exact>
           <Home />
         </Route>
+        <PrivateRoute exact path="/rooms" component={Rooms}></PrivateRoute>
       </Switch>
     </>
   );
