@@ -31,7 +31,7 @@ function ExactRoom(props) {
       setMonth(monthTrue);
     } else {
       setMonth(months + 1);
-      monthTrue += 1;
+      monthTrue = months + 1;
     }
     // let years = years;
     setYear(years);
@@ -57,6 +57,7 @@ function ExactRoom(props) {
     console.log(text);
     setBook(text ? text : `<h1>Вы забронировали номер ${fullDate}</h1>`);
   };
+
   console.log(book);
   return (
     <>

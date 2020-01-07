@@ -28,7 +28,7 @@ function booking(id, fullday, context, room) {
       payload: firebase.firestore.FieldValue.arrayUnion(newObj),
     });
 
-    return <Redirect to={`/rooms/`} />;
+    return <Redirect to={`/booked`} />;
   }
 }
 export default booking;

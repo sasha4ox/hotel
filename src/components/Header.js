@@ -13,6 +13,7 @@ import Login from './Login';
 import { AuthContext } from '../Auth';
 import ExactRoom from './ExactRoom';
 import getRooms from './getRooms';
+import { Booked } from './Booked';
 function Header() {
   const flats = getRooms();
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,9 @@ function Header() {
     // Конструкция "{...props}" нужна, чтобы не потерять
     // параметры, переданные от компонента Route
     return <ExactRoom {...props} flats={flats} />;
+  };
+  const WrappedBooked = function(props) {
+    return <Booked {...props} flats={flats} id={currentUser.uid} />;
   };
   return (
     <>
@@ -78,6 +82,7 @@ function Header() {
       </header>
       <Switch>
         <PrivateRoute path={`/rooms/:id`} component={WrappedExatRoom} />
+        <PrivateRoute path={`/booked`} component={WrappedBooked} />
         <Route path="/contacts">
           <Contacts />
         </Route>
