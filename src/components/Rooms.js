@@ -1,26 +1,30 @@
-import React, { useContext } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Pagination } from './Pagination';
 
-import getRooms from './getRooms';
-import { AuthContext } from '../Auth';
+// import getRooms from './getRooms';
+// import { AuthContext } from '../Auth';
 
-function Rooms() {
-  let match = useRouteMatch();
-  // console.log(match);
-  // console.log(match.path);
-  // console.log(match.url);
-  const flats = getRooms();
-  console.log(useContext(AuthContext));
+function Rooms(props) {
+  // const flats = props.flats;
+
+  const [flats, setFlats] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(4);
+  useEffect(() => {
+    setFlats(props.flats);
+  }, [props.flats]);
+
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentFlats = flats.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <>
-      {flats.map(flat => (
+      {currentFlats.map(flat => (
         <div key={flat.id} className="wrapper__room" data-id={flat.id}>
           <img src={flat.img} alt="flat.rooms" className="room__img" />
           <div className="room__description">
@@ -37,6 +41,7 @@ function Rooms() {
           <Link to={`rooms/${flat.id}`}>Заказать</Link>
         </div>
       ))}
+      <Pagination postPerPage={postPerPage} totalPost={flats.length} paginate={paginate} />
       <h1>Лучшие номера</h1>
 
       {/* <Route path={`${match.path}`}>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import firebase from '../firebase';
 import Contacts from './Contacts';
 import Home from './Home';
@@ -12,8 +12,9 @@ import SignUp from './SignUp';
 import Login from './Login';
 import { AuthContext } from '../Auth';
 import ExactRoom from './ExactRoom';
+import getRooms from './getRooms';
 function Header() {
-  let match = useRouteMatch();
+  const flats = getRooms();
   const { currentUser } = useContext(AuthContext);
   const handleSignOut = e => {
     e.preventDefault();
@@ -26,7 +27,16 @@ function Header() {
       </button>
     </li>
   ) : null;
-
+  const WrappedRooms = function(props) {
+    // Конструкция "{...props}" нужна, чтобы не потерять
+    // параметры, переданные от компонента Route
+    return <Rooms {...props} flats={flats} />;
+  };
+  const WrappedExatRoom = function(props) {
+    // Конструкция "{...props}" нужна, чтобы не потерять
+    // параметры, переданные от компонента Route
+    return <ExactRoom {...props} flats={flats} />;
+  };
   return (
     <>
       <header className="header">
@@ -67,14 +77,14 @@ function Header() {
         </nav>
       </header>
       <Switch>
-        <Route path={`/rooms/:id`} component={ExactRoom} />
+        <PrivateRoute path={`/rooms/:id`} component={WrappedExatRoom} />
         <Route path="/contacts">
           <Contacts />
         </Route>
         <Route path="/signUp">
           <SignUp />
         </Route>
-        <Route path="/rooms/one">
+        {/* <Route path="/rooms/one">
           <OneRoom />
         </Route>
         <Route path="/rooms/two">
@@ -82,14 +92,15 @@ function Header() {
         </Route>
         <Route path="/rooms/three">
           <ThreeRooms />
-        </Route>
+        </Route> */}
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/" exact>
           <Home />
         </Route>
-        <PrivateRoute exact path="/rooms" component={Rooms}></PrivateRoute>
+
+        <Route exact path="/rooms" component={WrappedRooms}></Route>
       </Switch>
     </>
   );
