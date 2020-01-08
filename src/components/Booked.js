@@ -20,16 +20,27 @@ export const Booked = props => {
       .firestore()
       .collection('flats')
       .doc(id);
-    console.log(date);
-    const deletedDate = arryIncludeId.map(item => {
-      console.log(item.payload);
-      return item.payload.filter(i => i.date !== date);
-    });
+    // console.log(date);
+    // const deletedDate = arryIncludeId.map(item => {
+    //   console.log(item.payload);
+    //   return item.payload.filter(i => i.date !== date);
+    // });
     // Set the "capital" field of the city 'DC'
-    console.log(deletedDate);
+    const savedDate = props.flats
+      .map(room => {
+        const roomBooked = room.payload.filter(item => item.id === props.id);
+        if (roomBooked.length) {
+          const payloadById = room.payload.filter(i => i.date !== date);
+          return (room.payload = [...payloadById]);
+        } else {
+          return null;
+        }
+      })
+      .filter(item => item);
+    console.log(savedDate);
     ref
       .update({
-        payload: deletedDate[0],
+        payload: savedDate[0],
       })
       .then(function() {
         console.log('Document successfully updated!');
