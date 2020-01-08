@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import firebase from '../firebase';
 import Contacts from './Contacts';
@@ -16,6 +16,8 @@ import getRooms from './getRooms';
 import { Booked } from './Booked';
 function Header() {
   const flats = getRooms();
+
+  // console.log(flats);
   const { currentUser } = useContext(AuthContext);
   const handleSignOut = e => {
     e.preventDefault();

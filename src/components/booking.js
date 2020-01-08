@@ -4,10 +4,11 @@ import { Route, Redirect } from 'react-router-dom';
 import firebase from '../firebase';
 
 function booking(id, fullday, context, room) {
-  console.log(context); //trouble with room
   console.log(room.payload);
+  // console.log(context); //trouble with room
+  // console.log(room.payload);
   const includeDate = room.payload.filter(item => item.date === fullday);
-  console.log(includeDate);
+  // console.log(includeDate);
   if (includeDate.length) {
     return (
       <>

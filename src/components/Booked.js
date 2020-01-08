@@ -1,31 +1,27 @@
 import React from 'react';
 import firebase from '../firebase';
 export const Booked = props => {
-  const arryIncludeId = props.flats
-    .map(room => {
-      const roomBooked = room.payload.filter(item => item.id === props.id);
-      if (roomBooked.length) {
-        const payloadById = room.payload.filter(item => item.id === props.id);
-        room.payload = [...payloadById];
-        return room;
-      } else {
-        return null;
-      }
-    })
-    .filter(item => item);
-  // const dateBooked
-  // const includeDate =
+  const { flats } = props;
+  const arryIncludeId = flats.map(room => {
+    const roomBooked = room.payload.filter(item => item.id === props.id);
+    if (roomBooked.length) {
+      const payloadById = room.payload.filter(item => item.id === props.id);
+      room.payload = [...payloadById];
+      return room;
+    } else {
+      return null;
+    }
+  });
+  // const includeRoom = arryIncludeId.filter(item => item.length);
+  console.log(arryIncludeId);
+  // const includedId = includeRoom.map(item => item.payload);
+  const arrayInc = arryIncludeId.filter(item => item);
+
   const deleteOrder = (id, date) => {
     const ref = firebase
       .firestore()
       .collection('flats')
       .doc(id);
-    // console.log(date);
-    // const deletedDate = arryIncludeId.map(item => {
-    //   console.log(item.payload);
-    //   return item.payload.filter(i => i.date !== date);
-    // });
-    // Set the "capital" field of the city 'DC'
     const savedDate = props.flats
       .map(room => {
         const roomBooked = room.payload.filter(item => item.id === props.id);
@@ -38,7 +34,7 @@ export const Booked = props => {
       })
       .filter(item => item);
     console.log(savedDate);
-    ref
+    return ref
       .update({
         payload: savedDate[0],
       })
@@ -50,14 +46,14 @@ export const Booked = props => {
         console.error('Error updating document: ', error);
       });
   };
-  console.log(arryIncludeId);
+
   return (
     <div>
       <h1>Список Ваших забронированных номеров!</h1>
-      {arryIncludeId.map((room, i) => (
-        <>
+      {/* {arrayInc.map((room, i) => (
+        <div key={i}>
           <img src={room.img} alt="dsfsd" />
-          <ul key={i}>
+          <ul>
             {room.payload.map(item => (
               <li key={Math.random()}>
                 {item.date}{' '}
@@ -65,8 +61,8 @@ export const Booked = props => {
               </li>
             ))}
           </ul>
-        </>
-      ))}
+        </div>
+      ))} */}
 
       {/* <h1>{props.flats}</h1> */}
       <h3>{props.id}</h3>

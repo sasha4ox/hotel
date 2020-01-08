@@ -5,11 +5,15 @@ import { AuthContext } from '../Auth';
 function ExactRoom(props) {
   const { currentUser } = useContext(AuthContext);
   const [rooms, setRooms] = useState(false);
-  const room = props.flats.find(room => {
-    if (room.id === props.match.params.id) {
-      return room;
-    }
-  });
+  console.log(props.flats);
+  const [room, setRoom] = useState(
+    props.flats.find(room => {
+      if (room.id === props.match.params.id) {
+        return room;
+      }
+    })
+  );
+
   const [day, setDay] = useState(null);
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
@@ -38,11 +42,10 @@ function ExactRoom(props) {
 
     dateStr = `${years}-${monthTrue}-${dayTrue}`;
     setFullDate(dateStr);
-    console.log(dateStr);
     if (room) {
       const yes = room.payload.filter(item => item.date === dateStr);
-      console.log(yes);
     }
+    console.log(room);
   };
 
   useEffect(() => {
