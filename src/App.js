@@ -148,14 +148,20 @@ let arrayOfHottel = [
     luxury: false,
   },
 ];
+// const item = ['Одноместный 1', 'Двухместный 2', 'Трёхместный 3'];
 // arrayOfHottel.forEach(element => {
-//   element.price = (1000 * Math.random()).toFixed();
+//   const sauna = element.sauna ? 1.5 : 1;
+//   const luxury = element.luxury ? 2 : 1;
+//   element.price = element.rooms * luxury * sauna * (1000 * Math.random()).toFixed();
 //   element.payload = [
 //     {
 //       id: 'bGGsYvOCr6hFbuOQq70N44TghPJ2',
 //       date: '2020-01-05',
 //     },
 //   ];
+//   element.tags = item[element.rooms - 1];
+//   element.tags += element.sauna ? 'сауна' : '';
+//   element.tags += element.luxury ? 'люкс' : '';
 //   firebase
 //     .firestore()
 //     .collection('flats')

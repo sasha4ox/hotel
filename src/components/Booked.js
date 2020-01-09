@@ -50,7 +50,7 @@ export const Booked = props => {
   return (
     <div>
       <h1>Список Ваших забронированных номеров!</h1>
-      {/* {arrayInc.map((room, i) => (
+      {arrayInc.map((room, i) => (
         <div key={i}>
           <img src={room.img} alt="dsfsd" />
           <ul>
@@ -62,7 +62,7 @@ export const Booked = props => {
             ))}
           </ul>
         </div>
-      ))} */}
+      ))}
 
       {/* <h1>{props.flats}</h1> */}
       <h3>{props.id}</h3>
