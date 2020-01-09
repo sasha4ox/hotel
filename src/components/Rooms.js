@@ -24,6 +24,7 @@ function Rooms(props) {
 
   const paginate = pageNumber => {
     setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
   };
   const handleFind = e => {
     setSearch(e.target.value);
@@ -53,7 +54,12 @@ function Rooms(props) {
           <Link to={`rooms/${flat.id}`}>Заказать</Link>
         </div>
       ))}
-      <Pagination postPerPage={postPerPage} totalPost={searcedArray.length} paginate={paginate} />
+      <Pagination
+        postPerPage={postPerPage}
+        totalPost={searcedArray.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
       <h1>Лучшие номера</h1>
 
       {/* <Route path={`${match.path}`}>
