@@ -13,30 +13,37 @@ export const Booked = props => {
     }
   });
   // const includeRoom = arryIncludeId.filter(item => item.length);
-  console.log(arryIncludeId);
+  // console.log(arryIncludeId);
   // const includedId = includeRoom.map(item => item.payload);
   const arrayInc = arryIncludeId.filter(item => item);
 
   const deleteOrder = (id, date) => {
+    console.log(id);
+    console.log(date);
     const ref = firebase
       .firestore()
       .collection('flats')
       .doc(id);
-    const savedDate = props.flats
-      .map(room => {
-        const roomBooked = room.payload.filter(item => item.id === props.id);
-        if (roomBooked.length) {
-          const payloadById = room.payload.filter(i => i.date !== date);
-          return (room.payload = [...payloadById]);
-        } else {
-          return null;
+    const exactRoom = props.flats.filter(room => {
+      return room.id === id;
+    });
+    // .filter(item => item);
+    console.log(exactRoom);
+    // console.log(exactRoom.payload);
+    console.log();
+
+    const withoutDeletedArray = exactRoom[0].payload.filter(item => {
+      if (item.date === date) {
+        if (item.id === props.id) {
+          return false;
         }
-      })
-      .filter(item => item);
-    console.log(savedDate);
-    return ref
+      }
+      return true;
+    });
+    console.log(withoutDeletedArray);
+    ref
       .update({
-        payload: savedDate[0],
+        payload: withoutDeletedArray,
       })
       .then(function() {
         console.log('Document successfully updated!');
