@@ -34,24 +34,29 @@ function Rooms(props) {
   console.log(flats);
   return (
     <>
-      <form action="">
-        <input type="text" onChange={handleFind} value={search} />
-      </form>
+      <div className={'wrapper__forSearch'}>
+        <form action="">
+          <label htmlFor="searchRoom">Поиск номера</label>
+          <input type="text" onChange={handleFind} id={'searchRoom'} value={search} />
+        </form>
+      </div>
+
       {currentFlats.map(flat => (
         <div key={flat.id} className="wrapper__room" data-id={flat.id}>
           <img src={flat.img} alt="flat.rooms" className="room__img" />
           <div className="room__description">
             <div className="room_descr_r">
-              {' '}
-              <p>{flat.sauna.toString()}</p>
-              <p>{flat.price}</p>
+              <p>{flat.sauna ? `Сауна в номере` : `Номер без сауны`}</p>
+              <p>{`Цена за сутки: ${flat.price} $`}</p>
             </div>
             <div className="room_descr_l">
-              <p>{flat.rooms}</p>
-              <p>{flat.luxury.toString()}</p>
+              <p>{`Комнат в номере: ${flat.rooms}`}</p>
+              <p>{flat.luxury ? `Номер класса Люкс` : `Комфортабельный номер`}</p>
             </div>
           </div>
-          <Link to={`rooms/${flat.id}`}>Заказать</Link>
+          <Link to={`rooms/${flat.id}`} className={'orderRoom'}>
+            Заказать
+          </Link>
         </div>
       ))}
       <Pagination
@@ -60,11 +65,6 @@ function Rooms(props) {
         paginate={paginate}
         currentPage={currentPage}
       />
-      <h1>Лучшие номера</h1>
-
-      {/* <Route path={`${match.path}`}>
-        <ExactRoom />
-      </Route> */}
     </>
   );
 }

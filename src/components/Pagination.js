@@ -6,8 +6,8 @@ export const Pagination = ({ postPerPage, totalPost, paginate, currentPage }) =>
     pageNumbers.push(i);
   }
   return (
-    <nav>
-      <ul>
+    <nav className={'pagination_nav'}>
+      <ul className={`pagination_ul`}>
         {pageNumbers.map(number => (
           <li key={number}>
             <button

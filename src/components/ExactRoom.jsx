@@ -64,34 +64,42 @@ function ExactRoom(props) {
   console.log(book);
   return (
     <>
-      {book}
-      <h1>Выберите число, когда вы хотите поселиться</h1>
-      <MyCalendar onChangeDay={onChangeDay} />
-      {day && (
-        <p>
-          {day} {month} {year}
-        </p>
-      )}
-      <form action="" onSubmit={submitDate}>
-        <input type="text" value={fullDate} onChange={onChangeDayForInput} />
-        <button>Забронировать</button>
-      </form>
       {rooms && (
         <div key={room.id} className="wrapper__room" data-id={rooms.id}>
           <img src={room.img} alt="flat.rooms" className="room__img" />
           <div className="room__description">
             <div className="room_descr_r">
-              {' '}
-              <p>{room.sauna.toString()}</p>
-              <p>{room.price}</p>
+              <p>{room.sauna ? `Сауна в номере` : `Номер без сауны`}</p>
+              <p>{`Цена за сутки: ${room.price} $`}</p>
             </div>
             <div className="room_descr_l">
-              <p>{room.rooms}</p>
-              <p>{room.luxury.toString()}</p>
+              <p>{`Комнат в номере: ${room.rooms}`}</p>
+              <p>{room.luxury ? `Номер класса Люкс` : `Комфортабельный номер`}</p>
             </div>
           </div>
         </div>
       )}
+      {book ? book : <h1>Выберите число, когда вы хотите поселиться</h1>}
+      <div className={'wrappere_forCalendar'}>
+        <MyCalendar onChangeDay={onChangeDay} />
+      </div>
+
+      {/* {day && (
+        <p>
+          {day} {month} {year}
+        </p>
+      )} */}
+      <div className={'wrapper_forInputDate'}>
+        <form action="" onSubmit={submitDate}>
+          <input
+            type="text"
+            value={fullDate}
+            onChange={onChangeDayForInput}
+            className={'booking_inputDate'}
+          />
+          <button className={'booking_btn'}>Забронировать</button>
+        </form>
+      </div>
     </>
   );
 }

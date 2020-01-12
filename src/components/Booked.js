@@ -2,21 +2,16 @@ import React from 'react';
 import firebase from '../firebase';
 export const Booked = props => {
   const { flats } = props;
-  const arryIncludeId = flats.map(room => {
-    const roomBooked = room.payload.filter(item => item.id === props.id);
-    if (roomBooked.length) {
-      const payloadById = room.payload.filter(item => item.id === props.id);
-      room.payload = [...payloadById];
-      return room;
-    } else {
-      return null;
-    }
+  const inclededArray = new Set([]);
+  const arryIncludeId = flats.forEach(room => {
+    room.payload.forEach(item => {
+      if (item.id === props.id) {
+        console.log(item.id);
+        console.log(props.id);
+        inclededArray.add(room);
+      }
+    });
   });
-  // const includeRoom = arryIncludeId.filter(item => item.length);
-  // console.log(arryIncludeId);
-  // const includedId = includeRoom.map(item => item.payload);
-  const arrayInc = arryIncludeId.filter(item => item);
-
   const deleteOrder = (id, date) => {
     console.log(id);
     console.log(date);
@@ -27,11 +22,6 @@ export const Booked = props => {
     const exactRoom = props.flats.filter(room => {
       return room.id === id;
     });
-    // .filter(item => item);
-    console.log(exactRoom);
-    // console.log(exactRoom.payload);
-    console.log();
-
     const withoutDeletedArray = exactRoom[0].payload.filter(item => {
       if (item.date === date) {
         if (item.id === props.id) {
@@ -57,16 +47,23 @@ export const Booked = props => {
   return (
     <div>
       <h1>Список Ваших забронированных номеров!</h1>
-      {arrayInc.map((room, i) => (
-        <div key={i}>
-          <img src={room.img} alt="dsfsd" />
-          <ul>
-            {room.payload.map(item => (
-              <li key={Math.random()}>
-                {item.date}{' '}
-                <button onClick={() => deleteOrder(room.id, item.date)}>Отменить</button>
-              </li>
-            ))}
+      {[...inclededArray].map((room, i) => (
+        <div key={i} className={'wrapper__room'}>
+          <img src={room.img} alt="dsfsd" className="room__img" />
+          <ul className="room__ordered__descrp">
+            {room.payload.map(item =>
+              item.id === props.id ? (
+                <li key={Math.random()} className={'room__ordered__date'}>
+                  {`Номер заказан на ${item.date} число, Если Ваши планы поменялись, свяжитесь с нашим операторм или нажмите кнопку "Отменить"`}
+                  <button
+                    onClick={() => deleteOrder(room.id, item.date)}
+                    className={'room__ordered__cancel'}
+                  >
+                    Отменить
+                  </button>
+                </li>
+              ) : null
+            )}
           </ul>
         </div>
       ))}
