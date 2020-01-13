@@ -17,7 +17,6 @@ h1 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
 }
 .hrd__nav__ul {
   display: flex;
@@ -84,10 +83,9 @@ h1 {
 }
 .wrapper__room {
   width: 95%;
-  margin: 0 auto;
+  margin: 25px auto 0;
   display: flex;
   flex-direction: column;
-  margin-bottom: 25px;
   background-color: #20232a;
   padding-top: 10px;
   box-shadow: 0px 4px 5px #20232a;
@@ -300,7 +298,7 @@ input {
 .wrapper__signUp {
   width: 95%;
   height: 95vh;
-  margin: 0 auto;
+  margin: 20px auto;
   background-color: #20232a;
   display: flex;
   flex-direction: column;
@@ -371,9 +369,25 @@ input {
   cursor: pointer;
   color: #fff;
 }
+.home__img__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .home__img {
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
   object-fit: cover;
-  height: 300px;
+  object-position: bottom center;
+  // height: 300px;
+}
+.wrapper__slider {
+  height: 100vh;
+}
+.ExactRoom__choiceDateTag{
+  text-align: center;
+}
+.ExactRoom__bookedTag{
+  text-align: center;
+  color: red;
 }

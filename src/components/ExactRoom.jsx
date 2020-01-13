@@ -5,7 +5,6 @@ import { AuthContext } from '../Auth';
 function ExactRoom(props) {
   const { currentUser } = useContext(AuthContext);
   const [rooms, setRooms] = useState(false);
-  console.log(props.flats);
   const [room, setRoom] = useState(
     props.flats.find(room => {
       if (room.id === props.match.params.id) {
@@ -45,7 +44,6 @@ function ExactRoom(props) {
     if (room) {
       const yes = room.payload.filter(item => item.date === dateStr);
     }
-    console.log(room);
   };
 
   useEffect(() => {
@@ -57,11 +55,11 @@ function ExactRoom(props) {
   const submitDate = e => {
     e.preventDefault();
     const text = booking(1, fullDate, currentUser.uid, room);
-    console.log(text);
-    setBook(text ? text : `<h1>Вы забронировали номер ${fullDate}</h1>`);
+    setBook(
+      text ? text : `<h1 class={'ExactRoom__bookedTag'}>Вы забронировали номер ${fullDate}</h1>`
+    );
   };
 
-  console.log(book);
   return (
     <>
       {rooms && (
@@ -79,16 +77,14 @@ function ExactRoom(props) {
           </div>
         </div>
       )}
-      {book ? book : <h1>Выберите число, когда вы хотите поселиться</h1>}
+      {book ? (
+        book
+      ) : (
+        <h1 className={'ExactRoom__choiceDateTag'}>Выберите число, когда вы хотите поселиться</h1>
+      )}
       <div className={'wrappere_forCalendar'}>
         <MyCalendar onChangeDay={onChangeDay} />
       </div>
-
-      {/* {day && (
-        <p>
-          {day} {month} {year}
-        </p>
-      )} */}
       <div className={'wrapper_forInputDate'}>
         <form action="" onSubmit={submitDate}>
           <input
