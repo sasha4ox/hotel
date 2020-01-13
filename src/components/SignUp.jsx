@@ -18,13 +18,17 @@ const SignUp = ({ history }) => {
     [history]
   );
   return (
-    <div>
-      <h1>Зарегистрироваться</h1>
-      <NavLink to="/login">Есть аккаунт?</NavLink>
+    <div className={'wrapper__signUp'}>
+      <h1 className={'signUp__name'}>Зарегистрироваться</h1>
       <form onSubmit={handleSignUp}>
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Sign Up</button>
+        <NavLink to="/login" className={'signUp__lin_to_logIn'}>
+          Есть аккаунт?
+        </NavLink>
+        <button type="submit" className={'signUp__btn'}>
+          Войти
+        </button>
       </form>
     </div>
   );

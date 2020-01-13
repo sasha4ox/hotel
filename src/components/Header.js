@@ -16,7 +16,21 @@ import getRooms from './getRooms';
 import { Booked } from './Booked';
 function Header() {
   const flats = getRooms();
+  useEffect(() => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuLine1 = document.getElementById('mobileMenuLine1');
+    const mobileMenuLine2 = document.getElementById('mobileMenuLine2');
+    const mobileMenuLine3 = document.getElementById('mobileMenuLine3');
+    const hdrNavMobile = document.getElementById('hdrNavMobile');
 
+    mobileMenuBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      hdrNavMobile.classList.toggle('hdr__navMobile');
+      mobileMenuLine1.classList.toggle('active_line_top');
+      mobileMenuLine2.classList.toggle('active_line_center');
+      mobileMenuLine3.classList.toggle('active_line_bottom');
+    });
+  }, []);
   // console.log(flats);
   const { currentUser } = useContext(AuthContext);
   const handleSignOut = e => {
@@ -46,7 +60,7 @@ function Header() {
   return (
     <>
       <header className="header">
-        <nav className="hdr__nav">
+        <nav className="hdr__nav" id="hdrNavMobile">
           <ul className="hrd__nav__ul">
             <li>
               <NavLink exact to="/">
@@ -81,6 +95,11 @@ function Header() {
             {signOut}
           </ul>
         </nav>
+        <div className="header__mobile-button" id="mobileMenuBtn">
+          <span className="header__mobile-button-line" id="mobileMenuLine1"></span>
+          <span className="header__mobile-button-line" id="mobileMenuLine2"></span>
+          <span className="header__mobile-button-line" id="mobileMenuLine3"></span>
+        </div>
       </header>
       <Switch>
         <PrivateRoute path={`/rooms/:id`} component={WrappedExatRoom} />

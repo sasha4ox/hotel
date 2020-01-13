@@ -21,12 +21,14 @@ const Login = ({ history }) => {
     return <Redirect to="/rooms" />;
   }
   return (
-    <div>
-      <h1>Войти</h1>
+    <div className={'wrapper__logIn'}>
+      <h1 className={'login__name'}>Войти</h1>
       <form onSubmit={handleLogin}>
         <input type="email" name="email" placeholder="Email" />
         <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Войти</button>
+        <button type="submit" className={'logIn__btn'}>
+          Войти
+        </button>
       </form>
     </div>
   );
