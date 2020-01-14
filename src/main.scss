@@ -60,20 +60,23 @@ h1 {
   background: hsl(222, 15%, 23%);
 }
 @media screen and(max-width:800px) {
-  // .header {
-  //   justify-content: flex-end;
-  // }
   .hdr__nav {
     position: absolute;
     right: 0;
     top: 0;
     background-color: #20232a;
-    min-height: 100%;
+    min-height: 500vh;
     transform: translateX(100%);
     transition: all ease 1s;
+    z-index: 1;
+    display: none;
+  }
+  .hdr__navAnimation {
+    transform: translateX(0%);
+    z-index: 1;
   }
   .hdr__navMobile {
-    transform: translateX(0%);
+    display: block;
   }
   .hrd__nav__ul {
     flex-direction: column;
@@ -91,6 +94,11 @@ h1 {
   padding-top: 10px;
   box-shadow: 0px 4px 5px #20232a;
 }
+.room__choicedApText {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
 .room__img {
   width: 85%;
   margin: 0 auto;
@@ -105,6 +113,12 @@ h1 {
   flex-direction: column-reverse;
   background-color: #20232a;
   color: #fff;
+  padding-bottom: 20px;
+}
+@media screen and(max-width:800px) {
+  .room__description {
+    width: 85%;
+  }
 }
 .room__description p {
   margin-top: 10px;
@@ -117,6 +131,13 @@ h1 {
   align-items: flex-start;
   margin-left: 10px;
   justify-content: center;
+}
+@media screen and(max-width:800px) {
+  .room_descr_r,
+  .room_descr_l {
+    width: 100%;
+    margin: 0;
+  }
 }
 .paginationBtn {
   margin: 0 5px;
@@ -156,6 +177,11 @@ h1 {
   margin: 0 auto;
   justify-content: center;
 }
+@media screen and(max-width:800px) {
+  .pagination_ul {
+    width: 280px;
+  }
+}
 .pagination_ul li {
   display: flex;
   justify-content: center;
@@ -167,6 +193,12 @@ h1 {
 .wrapper__forSearch input {
   margin-left: 10px;
 }
+// @media screen and(max-width:800px) {
+//   .wrapper__forSearch input {
+//     width: 80%;
+//     margin: 0 auto;
+//   }
+// }
 .orderRoom {
   text-decoration: none;
   color: black;
@@ -194,7 +226,7 @@ h1 {
   margin: 0 auto;
 }
 input {
-  width: 320px;
+  width: 280px;
   height: 35px;
   border: 1px solid #20232a;
   border-radius: 5px;
@@ -430,10 +462,10 @@ input {
 }
 .contacts__block {
   width: 55%;
-  min-width: 300px;
+  min-width: 280px;
   background: #292b31;
   border-radius: 10px;
-  box-shadow: 0px 4px 20px #61dafb;
+  box-shadow: 0px 4px 10px #61dafb;
   min-height: 350px;
   display: flex;
   flex-direction: column;
@@ -448,4 +480,17 @@ input {
 .contacts__bock_name {
   color: #fff;
   margin: 20px 0 10px;
+}
+.removeScroll {
+  overflow: hidden;
+}
+.header__signOutbtn {
+  background: #20232a;
+  color: #61dafb;
+  outline: none;
+  border: none;
+}
+.header__signOutbtn:hover {
+  color: #fff;
+  cursor: pointer;
 }

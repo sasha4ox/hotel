@@ -12,21 +12,33 @@ import ExactRoom from './ExactRoom';
 import getRooms from './getRooms';
 import { About } from './About';
 import { Booked } from './Booked';
+
 function Header() {
   const flats = getRooms();
   useEffect(() => {
+    function toggleMobileMenu() {
+      document.body.classList.toggle('removeScroll');
+      hdrNavMobile.classList.toggle('hdr__navMobile');
+      setTimeout(() => {
+        hdrNavMobile.classList.toggle('hdr__navAnimation');
+      }, 0);
+      mobileMenuLine1.classList.toggle('active_line_top');
+      mobileMenuLine2.classList.toggle('active_line_center');
+      mobileMenuLine3.classList.toggle('active_line_bottom');
+    }
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenuLine1 = document.getElementById('mobileMenuLine1');
     const mobileMenuLine2 = document.getElementById('mobileMenuLine2');
     const mobileMenuLine3 = document.getElementById('mobileMenuLine3');
     const hdrNavMobile = document.getElementById('hdrNavMobile');
-
+    hdrNavMobile.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target) {
+        toggleMobileMenu();
+      }
+    });
     mobileMenuBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      hdrNavMobile.classList.toggle('hdr__navMobile');
-      mobileMenuLine1.classList.toggle('active_line_top');
-      mobileMenuLine2.classList.toggle('active_line_center');
-      mobileMenuLine3.classList.toggle('active_line_bottom');
+      toggleMobileMenu();
     });
   }, []);
   // console.log(flats);
@@ -37,7 +49,7 @@ function Header() {
   };
   const signOut = !!currentUser ? (
     <li>
-      <button rel="nofollow" onClick={handleSignOut}>
+      <button className={'header__signOutbtn'} rel="nofollow" onClick={handleSignOut}>
         Выйти
       </button>
     </li>
@@ -61,9 +73,12 @@ function Header() {
                 Главная
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/signUp">Зарегистрироваться/Войти</NavLink>
-            </li>
+            {!!currentUser ? null : (
+              <li>
+                <NavLink to="/signUp">Зарегистрироваться/Войти</NavLink>
+              </li>
+            )}
+
             <li>
               <NavLink to="/rooms" exact>
                 Номера

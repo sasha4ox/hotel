@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Pagination } from './Pagination';
 
 // import getRooms from './getRooms';
@@ -54,9 +54,9 @@ function Rooms(props) {
               <p>{flat.luxury ? `Номер класса Люкс` : `Комфортабельный номер`}</p>
             </div>
           </div>
-          <Link to={`rooms/${flat.id}`} className={'orderRoom'}>
+          <NavLink to={`rooms/${flat.id}`} className={'orderRoom'}>
             Заказать
-          </Link>
+          </NavLink>
         </div>
       ))}
       <Pagination

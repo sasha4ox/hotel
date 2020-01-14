@@ -47,6 +47,7 @@ function ExactRoom(props) {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     room ? setRooms(true) : setRooms(false);
   }, [room]);
   const onChangeDayForInput = e => {
@@ -64,6 +65,7 @@ function ExactRoom(props) {
     <>
       {rooms && (
         <div key={room.id} className="wrapper__room" data-id={rooms.id}>
+          <h2 className={'room__choicedApText'}> Выбранные апартаменты</h2>
           <img src={room.img} alt="flat.rooms" className="room__img" />
           <div className="room__description">
             <div className="room_descr_r">

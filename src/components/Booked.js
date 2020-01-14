@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import firebase from '../firebase';
 export const Booked = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { flats } = props;
   const inclededArray = new Set([]);
   const arryIncludeId = flats.forEach(room => {
