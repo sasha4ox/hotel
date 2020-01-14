@@ -17,6 +17,8 @@ h1 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: 0px 4px 10px #fff;
+  z-index: 1;
 }
 .hrd__nav__ul {
   display: flex;
@@ -408,18 +410,36 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.home__img__wrapper h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
 }
 .home__img {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
-  object-position: bottom;
+  object-position: center center;
 }
 .wrapper__slider {
   background: #292b31;
-  padding: 20px 0;
-  height: 80vh;
+  // padding: 20px 0;
+  height: 100vh;
 }
+// @media screen and(max-width:800px) {
+//   .wrapper__slider {
+//     height: 290px;
+//   }
+// }
+// @media screen and(max-width:400px) {
+//   .wrapper__slider {
+//     height: 220px;
+//   }
+// }
 .ExactRoom__choiceDateTag {
   text-align: center;
 }
