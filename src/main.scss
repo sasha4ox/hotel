@@ -48,6 +48,7 @@ h1 {
   background: #20232a;
   top: 50px;
   display: none;
+  z-index: 1;
 }
 .hrd__nav__ul li:hover ul {
   display: block;
@@ -181,7 +182,7 @@ h1 {
   background-color: #292b31;
 }
 .pagination_nav {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .wrapper_forInputDate form {
@@ -297,8 +298,9 @@ input {
 }
 .wrapper__signUp {
   width: 95%;
-  height: 95vh;
+
   margin: 20px auto;
+  padding: 40px 0;
   background-color: #20232a;
   display: flex;
   flex-direction: column;
@@ -340,9 +342,10 @@ input {
   align-items: center;
   justify-content: center;
   width: 95%;
-  margin: 0 auto;
+  margin: 20px auto;
   background: #20232a;
-  height: 95vh;
+  padding: 50px 0;
+  // height: 95vh;
 }
 .wrapper__logIn form {
   display: flex;
@@ -376,18 +379,73 @@ input {
 }
 .home__img {
   width: 100%;
-  margin: 0 auto;
+  height: 100%;
   object-fit: cover;
-  object-position: bottom center;
-  // height: 300px;
+  object-position: bottom;
 }
 .wrapper__slider {
-  height: 100vh;
+  background: #292b31;
+  padding: 20px 0;
+  height: 700px;
 }
-.ExactRoom__choiceDateTag{
+.ExactRoom__choiceDateTag {
   text-align: center;
 }
-.ExactRoom__bookedTag{
+.ExactRoom__bookedTag {
   text-align: center;
   color: red;
+}
+.wrapper__about {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  background: #20232a;
+  margin-top: 20px;
+}
+.about__name {
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.about__text {
+  display: flex;
+  width: 95%;
+  margin: 10px auto;
+  text-align: justify;
+  color: #fff;
+}
+.wrapper__contacts {
+  width: 95%;
+  background: #20232a;
+  margin: 20px auto 0;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.contacts__name {
+  text-align: center;
+  color: #fff;
+  padding: 20px 0;
+}
+.contacts__block {
+  width: 55%;
+  min-width: 300px;
+  background: #292b31;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px #61dafb;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+.contacts__block a {
+  color: #61dafb;
+  text-decoration: none;
+}
+.contacts__bock_name {
+  color: #fff;
+  margin: 20px 0 10px;
 }

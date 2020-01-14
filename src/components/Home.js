@@ -36,13 +36,6 @@ function Home() {
             <div className={'home__img__wrapper'}>
               <img
                 className={'home__img'}
-                src="https://firebasestorage.googleapis.com/v0/b/hotel-a7493.appspot.com/o/913712461.jpg?alt=media&token=d4ce9145-30ae-4ab5-b563-12256cfddefe"
-                alt="main image"
-              />
-            </div>
-            <div className={'home__img__wrapper'}>
-              <img
-                className={'home__img'}
                 src="https://firebasestorage.googleapis.com/v0/b/hotel-a7493.appspot.com/o/419175846.jpg?alt=media&token=c5517907-cc1d-4ca2-a72f-2a605ad55d07"
                 alt="main image"
               />

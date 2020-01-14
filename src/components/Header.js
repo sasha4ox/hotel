@@ -4,15 +4,13 @@ import firebase from '../firebase';
 import Contacts from './Contacts';
 import Home from './Home';
 import Rooms from './Rooms';
-import OneRoom from './OneRoom';
-import TwoRooms from './TwoRooms';
-import ThreeRooms from './ThreeRooms';
 import PrivateRoute from '../PrivateRoute';
 import SignUp from './SignUp';
 import Login from './Login';
 import { AuthContext } from '../Auth';
 import ExactRoom from './ExactRoom';
 import getRooms from './getRooms';
+import { About } from './About';
 import { Booked } from './Booked';
 function Header() {
   const flats = getRooms();
@@ -45,13 +43,9 @@ function Header() {
     </li>
   ) : null;
   const WrappedRooms = function(props) {
-    // Конструкция "{...props}" нужна, чтобы не потерять
-    // параметры, переданные от компонента Route
     return <Rooms {...props} flats={flats} />;
   };
   const WrappedExatRoom = function(props) {
-    // Конструкция "{...props}" нужна, чтобы не потерять
-    // параметры, переданные от компонента Route
     return <ExactRoom {...props} flats={flats} />;
   };
   const WrappedBooked = function(props) {
@@ -74,6 +68,12 @@ function Header() {
               <NavLink to="/rooms" exact>
                 Номера
               </NavLink>
+            </li>
+            <li>
+              <NavLink to="/contacts">Контакты</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">О нас</NavLink>
               <ul>
                 <li>
                   <NavLink to="/rooms/one">Одноместные</NavLink>
@@ -85,12 +85,6 @@ function Header() {
                   <NavLink to="/rooms/three">Трёхместные</NavLink>
                 </li>
               </ul>
-            </li>
-            <li>
-              <NavLink to="/contacts">Контакты</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">О нас</NavLink>
             </li>
             {signOut}
           </ul>
@@ -110,17 +104,11 @@ function Header() {
         <Route path="/signUp">
           <SignUp />
         </Route>
-        {/* <Route path="/rooms/one">
-          <OneRoom />
-        </Route>
-        <Route path="/rooms/two">
-          <TwoRooms />
-        </Route>
-        <Route path="/rooms/three">
-          <ThreeRooms />
-        </Route> */}
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="/" exact>
           <Home />
