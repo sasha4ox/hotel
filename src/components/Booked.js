@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import firebase from '../firebase';
+import { BookedEmpty } from './Booked/bookedEmpty';
 export const Booked = props => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,10 +47,11 @@ export const Booked = props => {
         console.error('Error updating document: ', error);
       });
   };
-
+  console.log(inclededArray.size);
   return (
-    <div>
-      <h1>Список Ваших забронированных номеров!</h1>
+    <div className="ExactRoom__choiceDateTag">
+      {inclededArray.size === 0 ? <BookedEmpty /> : <h1>Список Ваших забронированных номеров!</h1>}
+
       {[...inclededArray].map((room, i) => (
         <div key={i} className={'wrapper__room'}>
           <img src={room.img} alt="dsfsd" className="room__img" />
@@ -57,7 +59,7 @@ export const Booked = props => {
             {room.payload.map(item =>
               item.id === props.id ? (
                 <li key={Math.random()} className={'room__ordered__date'}>
-                  {`Номер заказан на ${item.date} число, Если Ваши планы поменялись, свяжитесь с нашим операторм или нажмите кнопку "Отменить"`}
+                  {`С ${item.date} по ${item.dateTo},Вы заказали данный номер, Если Ваши планы поменялись, свяжитесь с нашим операторм или нажмите кнопку "Отменить"`}
                   <button
                     onClick={() => deleteOrder(room.id, item.date)}
                     className={'room__ordered__cancel'}
@@ -70,9 +72,6 @@ export const Booked = props => {
           </ul>
         </div>
       ))}
-
-      {/* <h1>{props.flats}</h1> */}
-      <h3>{props.id}</h3>
     </div>
   );
 };

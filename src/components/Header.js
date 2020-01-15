@@ -31,11 +31,14 @@ function Header() {
     const mobileMenuLine2 = document.getElementById('mobileMenuLine2');
     const mobileMenuLine3 = document.getElementById('mobileMenuLine3');
     const hdrNavMobile = document.getElementById('hdrNavMobile');
-    hdrNavMobile.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A' || e.target) {
-        toggleMobileMenu();
-      }
-    });
+    if (window.matchMedia('(max-width: 800px)').matches) {
+      hdrNavMobile.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' || e.target) {
+          toggleMobileMenu();
+        }
+      });
+    }
+
     mobileMenuBtn.addEventListener('click', function(e) {
       e.preventDefault();
       toggleMobileMenu();
@@ -78,6 +81,11 @@ function Header() {
                 <NavLink to="/signUp">Зарегистрироваться/Войти</NavLink>
               </li>
             )}
+            {!!currentUser ? (
+              <li>
+                <NavLink to="/booked">Забронированные номера</NavLink>
+              </li>
+            ) : null}
 
             <li>
               <NavLink to="/rooms" exact>

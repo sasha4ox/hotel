@@ -157,6 +157,9 @@ let arrayOfHottel = [
 //     {
 //       id: 'bGGsYvOCr6hFbuOQq70N44TghPJ2',
 //       date: '2020-01-05',
+//       dateTo: `2020,01,18`,
+//       dateIn: '2020,0,15',
+//       dateOut: '2020,0,18',
 //     },
 //   ];
 //   element.tags = item[element.rooms - 1];

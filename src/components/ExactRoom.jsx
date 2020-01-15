@@ -13,56 +13,93 @@ function ExactRoom(props) {
     })
   );
 
-  const [day, setDay] = useState(null);
-  const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
+  // const [day, setDay] = useState(null);
+  // const [month, setMonth] = useState(null);
+  // const [year, setYear] = useState(null);
+  const [dateIn, setDateIn] = useState('');
+  const [dateOut, setDateOut] = useState('');
   const [fullDate, setFullDate] = useState(`1990-04-02`);
+  const [fullDateOut, setFullDateOut] = useState(`1990-04-02`);
+
   const [book, setBook] = useState('');
   let dateStr;
-  const onChangeDay = (days, months, years) => {
+  const onChangeDay = (days, months, years, name) => {
     let dayTrue;
     if (days < 9) {
       dayTrue = `0${days}`;
-      setDay(dayTrue);
+      // setDay(dayTrue);
     } else {
       dayTrue = days;
-      setDay(days);
+      // setDay(days);
     }
     let monthTrue;
     if (months < 9) {
       monthTrue = `0${months + 1}`;
-      setMonth(monthTrue);
+      // setMonth(monthTrue);
     } else {
-      setMonth(months + 1);
+      // setMonth(months + 1);
       monthTrue = months + 1;
     }
     // let years = years;
-    setYear(years);
+    // setYear(years);
 
     dateStr = `${years}-${monthTrue}-${dayTrue}`;
-    setFullDate(dateStr);
-    if (room) {
-      const yes = room.payload.filter(item => item.date === dateStr);
-    }
-  };
+    switch (name) {
+      case 'dateIn':
+        setFullDate(dateStr);
+        setDateIn(`${years},${months},${days}`);
+        break;
+      case 'dateOut':
+        setFullDateOut(dateStr);
+        setDateOut(`${years},${months},${days}`);
 
+        break;
+    }
+
+    // if (room) {
+    //   const yes = room.payload.filter(item => item.date === dateStr);
+    // }
+  };
+  console.log(dateIn);
   useEffect(() => {
     window.scrollTo(0, 0);
     room ? setRooms(true) : setRooms(false);
   }, [room]);
   const onChangeDayForInput = e => {
-    setFullDate(e.target.value);
+    switch (e.target.name) {
+      case 'dateIn':
+        setFullDate(e.target.value);
+        break;
+      case 'dateOut':
+        setFullDateOut(e.target.value);
+        break;
+    }
   };
   const submitDate = e => {
     e.preventDefault();
-    const text = booking(1, fullDate, currentUser.uid, room);
+    const text = booking(1, fullDate, fullDateOut, currentUser.uid, room, dateIn, dateOut);
     setBook(
       text ? text : `<h1 class={'ExactRoom__bookedTag'}>Вы забронировали номер ${fullDate}</h1>`
     );
   };
-
+  const openBusyRoom = e => {
+    e.currentTarget.classList.toggle('wrapper__room__busyRoomActive');
+    const room__busyRoom = document.querySelectorAll('.room__busyRoom');
+    [...room__busyRoom].forEach(item => item.classList.toggle('room__busyRoomActive'));
+  };
   return (
     <>
+      <div className="wrapper__room__busyRoom" onClick={openBusyRoom}>
+        <h3 className="room__busyRoom__h2">Даты бронирования номера</h3>
+        {room.payload.map((item, i) => (
+          <div className="room__busyRoom" key={i}>
+            <h3>
+              Номер занят с {item.date} по {item.dateTo} число
+            </h3>
+          </div>
+        ))}
+      </div>
+
       {rooms && (
         <div key={room.id} className="wrapper__room" data-id={rooms.id}>
           <h2 className={'room__choicedApText'}> Выбранные апартаменты</h2>
@@ -84,20 +121,33 @@ function ExactRoom(props) {
       ) : (
         <h1 className={'ExactRoom__choiceDateTag'}>Выберите число, когда вы хотите поселиться</h1>
       )}
-      <div className={'wrappere_forCalendar'}>
-        <MyCalendar onChangeDay={onChangeDay} />
-      </div>
-      <div className={'wrapper_forInputDate'}>
-        <form action="" onSubmit={submitDate}>
+      {/* <div className={'wrappere_forCalendar'}></div> */}
+
+      <form action="" onSubmit={submitDate} className="formCalendar">
+        <div className={'wrapper_forInputDate'}>
+          <p className="formCalendar__name">Выберите дату приезда</p>
+          <MyCalendar onChangeDay={onChangeDay} name={'dateIn'} />
           <input
             type="text"
             value={fullDate}
             onChange={onChangeDayForInput}
             className={'booking_inputDate'}
+            name="dateIn"
           />
-          <button className={'booking_btn'}>Забронировать</button>
-        </form>
-      </div>
+        </div>
+        <div className={'wrapper_forInputDate'}>
+          <p className="formCalendar__name">Выберите дату выезда</p>
+          <MyCalendar onChangeDay={onChangeDay} name={'dateOut'} />
+          <input
+            type="text"
+            value={fullDateOut}
+            onChange={onChangeDayForInput}
+            className={'booking_inputDate'}
+            name="dateOut"
+          />
+        </div>
+        <button className={'booking_btn'}>Забронировать</button>
+      </form>
     </>
   );
 }

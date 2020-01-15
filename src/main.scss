@@ -219,14 +219,14 @@ h1 {
   margin: 20px 0;
 }
 
-.wrapper_forInputDate form {
-  padding-top: 25px;
-  display: flex;
-  flex-direction: column;
-  background-color: #20232a;
-  width: 95%;
-  margin: 0 auto;
-}
+// .wrapper_forInputDate form {
+//   padding-top: 25px;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #20232a;
+//   width: 95%;
+//   margin: 0 auto;
+// }
 input {
   width: 280px;
   height: 35px;
@@ -236,13 +236,9 @@ input {
   padding-left: 10px;
   outline: none;
 }
-// .booking_inputDate {
-//   width: 320px;
-//   height: 35px;
-//   border: 1px solid #20232a;
-//   border-radius: 5px;
-//   margin: 0 auto;
-// }
+.booking_inputDate {
+  margin-top: 20px;
+}
 .booking_btn {
   width: 100%;
   height: 50px;
@@ -285,12 +281,7 @@ input {
 }
 .react-calendar {
   margin: 0px auto;
-}
-.wrappere_forCalendar {
-  width: 95%;
-  margin: 0 auto;
-  padding: 15px 0;
-  background-color: #20232a;
+  max-width: 280px;
 }
 
 //Mobile btm menu
@@ -513,4 +504,79 @@ input {
 .header__signOutbtn:hover {
   color: #fff;
   cursor: pointer;
+}
+.room__busyRoom {
+  width: 95%;
+  margin: 10px auto;
+  background: #20232a;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 0px;
+  opacity: 0;
+  height: 0;
+  transition: padding ease 1s;
+}
+.room__busyRoomActive {
+  opacity: 1;
+  padding: 30px;
+  height: auto;
+  transition: padding ease 1s;
+}
+.wrapper__room__busyRoom {
+  height: 30px;
+  width: 95%;
+  margin: 10px auto 0;
+  background: #292b31;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 5px #61dafb;
+}
+.wrapper__room__busyRoom:hover {
+  cursor: pointer;
+}
+
+.wrapper__room__busyRoom h3 {
+  color: #fff;
+}
+.wrapper__room__busyRoomActive {
+  height: auto;
+}
+.formCalendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  background-color: #20232a;
+  width: 95%;
+  margin: 0 auto;
+}
+.wrapper_forInputDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+}
+.wrapper_bookedEmpty {
+  width: 95%;
+  margin: 20px auto;
+  background: #20232a;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper_bookedEmpty h1 {
+  color: #fff;
+}
+.wrapper_bookedEmpty a {
+  color: #61dafb;
+  text-decoration: none;
+}
+.formCalendar__name {
+  color: #fff;
+  margin: 10px 0;
 }
