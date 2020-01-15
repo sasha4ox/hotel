@@ -21,10 +21,12 @@ function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
       (compareDate(dateIn, item.dateIn) && compareDate(item.dateOut, dateIn)) ||
       dateIn === item.dateIn ||
       dateIn === item.dateOut ||
+      dateOut === item.dateIn ||
+      dateOut === item.dateOut ||
       (compareDate(item.dateOut, dateOut) && compareDate(dateOut, item.dateIn)) ||
       (item.dateOut === dateOut && compareDate(dateOut, item.dateIn)) ||
-      (compareDate(item.dateIn, dateIn) && compareDate(dateOut, item.dateOut)) ||
-      (compareDate(item.dateIn, dateIn) && compareDate(item.dateOut, dateOut))
+      (compareDate(item.dateIn, dateIn) && compareDate(dateOut, item.dateOut))
+    // (compareDate(item.dateIn, dateIn) && compareDate(item.dateOut, dateOut))
   );
   console.log(incAr);
   const includeDate = room.payload.filter(item => item.date === fullday);
