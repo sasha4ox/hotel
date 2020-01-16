@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto Slab', serif;
+}
+#root {
+  background: #fff;
 }
 li {
   list-style: none;
@@ -12,12 +16,11 @@ h1 {
   flex-direction: column;
 }
 .header {
-  background: #20232a;
-  min-height: 50px;
+  background: #282c35;
+  min-height: 10vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0px 4px 10px #fff;
   z-index: 1;
 }
 .hrd__nav__ul {
@@ -25,7 +28,7 @@ h1 {
 }
 
 .hrd__nav__ul li {
-  height: 50px;
+  // height: 50px;
   display: flex;
   padding: 0 20px;
   border-right: 1px solid #61dafb;
@@ -67,14 +70,14 @@ h1 {
     right: 0;
     top: 0;
     background-color: #20232a;
-    min-height: 500vh;
-    transform: translateX(100%);
+    height: 100%;
+    transform: translateX(90vw);
     transition: all ease 1s;
     z-index: 1;
     display: none;
   }
   .hdr__navAnimation {
-    transform: translateX(0%);
+    transform: translateX(0vw);
     z-index: 1;
   }
   .hdr__navMobile {
@@ -85,16 +88,24 @@ h1 {
   }
   .hrd__nav__ul li {
     border-right: none;
+    margin-top: 15px;
   }
 }
 .wrapper__room {
-  width: 95%;
-  margin: 25px auto 0;
+  width: 100%;
+  margin: 0 auto 25px;
   display: flex;
   flex-direction: column;
   background-color: #20232a;
-  padding-top: 10px;
+  padding-top: 20px;
+  border-radius: 10px;
   box-shadow: 0px 4px 5px #20232a;
+}
+.selected__room {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
 }
 .room__choicedApText {
   text-align: center;
@@ -107,6 +118,15 @@ h1 {
   height: 300px;
   object-fit: cover;
   border-radius: 10px;
+}
+@media screen and(max-width:800px) {
+  .room__img {
+    width: 98%;
+  }
+}
+.room__img__selected {
+  width: 100%;
+  height: 100%;
 }
 .room__description {
   display: flex;
@@ -121,6 +141,16 @@ h1 {
   .room__description {
     width: 85%;
   }
+}
+.room__description__selected {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 15px auto;
+  // align-items: center;
+}
+.room__description__selected p {
+  color: rgba(255, 255, 255, 0.4);
 }
 .room__description p {
   margin-top: 10px;
@@ -260,7 +290,8 @@ input {
 }
 .room__ordered__descrp {
   display: flex;
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
   flex-direction: column;
 
   background-color: #20232a;
@@ -343,6 +374,11 @@ input {
 .signUp__name {
   color: #fff;
 }
+@media screen and (max-width: 800px) {
+  .signUp__name {
+    font-size: 25px;
+  }
+}
 .signUp__lin_to_logIn {
   text-decoration: none;
   color: #fff;
@@ -407,7 +443,7 @@ input {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   color: #fff;
 }
 .home__img {
@@ -419,7 +455,7 @@ input {
 .wrapper__slider {
   background: #292b31;
   // padding: 20px 0;
-  height: 100vh;
+  height: 90vh;
 }
 // @media screen and(max-width:800px) {
 //   .wrapper__slider {
@@ -433,6 +469,7 @@ input {
 // }
 .ExactRoom__choiceDateTag {
   text-align: center;
+  color: #fff;
 }
 .ExactRoom__bookedTag {
   text-align: center;
@@ -441,10 +478,10 @@ input {
 .wrapper__about {
   display: flex;
   flex-direction: column;
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
+  height: 90vh;
+  // margin: 0 auto;
   background: #20232a;
-  margin-top: 20px;
 }
 .about__name {
   color: #fff;
@@ -459,9 +496,9 @@ input {
   color: #fff;
 }
 .wrapper__contacts {
-  width: 95%;
+  width: 100%;
   background: #20232a;
-  margin: 20px auto 0;
+  margin: 0 auto 0;
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -476,7 +513,7 @@ input {
   min-width: 280px;
   background: #292b31;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px #61dafb;
+  box-shadow: 0px 0px 10px #fff;
   min-height: 350px;
   display: flex;
   flex-direction: column;
@@ -496,7 +533,7 @@ input {
   overflow: hidden;
 }
 .header__signOutbtn {
-  background: #20232a;
+  background: inherit;
   color: #61dafb;
   outline: none;
   border: none;
@@ -526,13 +563,13 @@ input {
 }
 .wrapper__room__busyRoom {
   height: 30px;
-  width: 95%;
-  margin: 10px auto 0;
+  width: 100%;
+  margin: 0px auto;
   background: #292b31;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 5px #61dafb;
+  box-shadow: 0 4px 5px #4e5058;
 }
 .wrapper__room__busyRoom:hover {
   cursor: pointer;
@@ -544,14 +581,21 @@ input {
 .wrapper__room__busyRoomActive {
   height: auto;
 }
+.wrapper__calendars {
+  display: flex;
+}
+@media screen and(max-width:800px) {
+  .wrapper__calendars {
+    flex-direction: column;
+  }
+}
 .formCalendar {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 25px;
   background-color: #20232a;
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
 }
 .wrapper_forInputDate {
   display: flex;
@@ -560,10 +604,10 @@ input {
   margin: 15px;
 }
 .wrapper_bookedEmpty {
-  width: 95%;
-  margin: 20px auto;
+  width: 100%;
+  margin: 0 auto;
   background: #20232a;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -579,4 +623,45 @@ input {
 .formCalendar__name {
   color: #fff;
   margin: 10px 0;
+}
+.Modal {
+  position: absolute;
+  max-width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(32, 35, 42, 1);
+  height: 250px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 15px #fff;
+  border-radius: 10px;
+}
+@media screen and (max-width: 800px) {
+  .Modal {
+    width: 95%;
+  }
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(32, 35, 42, 0.8);
+}
+.modalClose__btn {
+  background: #20232a;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #fff;
+}
+.modalClose__btn:hover {
+  cursor: pointer;
+}
+.ExactRoom__h1 {
+  background: #20232a;
 }

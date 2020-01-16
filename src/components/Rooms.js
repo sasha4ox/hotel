@@ -28,10 +28,11 @@ function Rooms(props) {
   };
   const handleFind = e => {
     setSearch(e.target.value);
+    setCurrentPage(1);
   };
 
-  console.log(searcedArray);
-  console.log(flats);
+  // console.log(searcedArray);
+  // console.log(flats);
   return (
     <>
       <div className={'wrapper__forSearch'}>

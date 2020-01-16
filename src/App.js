@@ -149,10 +149,14 @@ let arrayOfHottel = [
   },
 ];
 // const item = ['Одноместный 1', 'Двухместный 2', 'Трёхместный 3'];
+// function randomNumber(min = 0, max =  1) {
+//   let rand = min + Math.random() * (max + 1 - min);
+//   return Math.floor(rand);
+// }
 // arrayOfHottel.forEach(element => {
-//   const sauna = element.sauna ? 1.5 : 1;
-//   const luxury = element.luxury ? 2 : 1;
-//   element.price = element.rooms * luxury * sauna * (1000 * Math.random()).toFixed();
+//   const sauna = element.sauna ? 2 : 1;
+//   const luxury = element.luxury ? 3 : 1;
+//   element.price = element.rooms * luxury * sauna * randomNumber(150,500);
 //   element.payload = [
 //     {
 //       id: 'bGGsYvOCr6hFbuOQq70N44TghPJ2',

@@ -51,7 +51,11 @@ function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
     docRef.update({
       payload: firebase.firestore.FieldValue.arrayUnion(newObj),
     });
-
+    // return (
+    //   <>
+    //     <h1 className="ExactRoom__choiceDateTag">Извините, номер занят. Выберите другой день</h1>
+    //   </>
+    // );
     return <Redirect to={`/booked`} />;
   }
 }

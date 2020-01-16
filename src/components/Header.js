@@ -17,7 +17,6 @@ function Header() {
   const flats = getRooms();
   useEffect(() => {
     function toggleMobileMenu() {
-      document.body.classList.toggle('removeScroll');
       hdrNavMobile.classList.toggle('hdr__navMobile');
       setTimeout(() => {
         hdrNavMobile.classList.toggle('hdr__navAnimation');
