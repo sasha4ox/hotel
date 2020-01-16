@@ -3,7 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto Slab', serif;
+}
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
 }
 #root {
   background: #fff;
@@ -41,6 +44,7 @@ h1 {
 .hrd__nav__ul li a {
   color: #61dafb;
   text-decoration: none;
+  font-size: 1rem;
 }
 .hrd__nav__ul li a.active {
   color: #ffe;
@@ -537,6 +541,7 @@ input {
   color: #61dafb;
   outline: none;
   border: none;
+  font-size: 1rem;
 }
 .header__signOutbtn:hover {
   color: #fff;
