@@ -31,20 +31,28 @@ h1 {
 }
 
 .hrd__nav__ul li {
-  // height: 50px;
+  height: 10vh;
   display: flex;
-  padding: 0 20px;
-  border-right: 1px solid #61dafb;
+
   position: relative;
   align-items: center;
 }
-.hrd__nav__ul li:last-child {
+.hrd__nav__ul li:last-child a,
+.hrd__nav__ul li:last-child button {
   border-right: none;
 }
-.hrd__nav__ul li a {
+.hrd__nav__ul li a,
+.hrd__nav__ul li button {
   color: #61dafb;
   text-decoration: none;
   font-size: 1rem;
+  padding: 0 20px;
+  border-right: 1px solid #61dafb;
+  // width: 100%;
+  // height: 100%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 }
 .hrd__nav__ul li a.active {
   color: #ffe;
@@ -55,18 +63,34 @@ h1 {
 .hrd__nav__ul li ul {
   position: absolute;
   background: #20232a;
-  top: 50px;
+  top: 10vh;
   display: none;
   z-index: 1;
 }
 .hrd__nav__ul li:hover ul {
   display: block;
 }
+
 .hrd__nav__ul li > ul li {
   padding: 20px;
   height: 60px;
   border: 1px solid #61dafb;
   background: hsl(222, 15%, 23%);
+}
+@media screen and(max-width:800px) {
+  .hrd__nav__ul li ul {
+    display: block;
+    top: 5vh;
+  }
+  .hrd__nav__ul li > ul li {
+    padding: 0;
+    height: 5vh;
+    border: none;
+    background: inherit;
+  }
+}
+.hrd__nav__ul li > ul li a {
+  border: none;
 }
 @media screen and(max-width:800px) {
   .hdr__nav {
@@ -89,10 +113,19 @@ h1 {
   }
   .hrd__nav__ul {
     flex-direction: column;
+    margin-top: 20px;
   }
   .hrd__nav__ul li {
+    // margin-top: 10px;
+    height: 5vh;
+  }
+  .hrd__nav__ul li a {
     border-right: none;
-    margin-top: 15px;
+    // width: 100%;
+    // height: 100%;
+  }
+  .hrd__nav__ul li button {
+    border-right: none;
   }
 }
 .wrapper__room {
@@ -446,9 +479,23 @@ input {
 .home__img__wrapper h2 {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  right: 50%;
+  transform: translate(50%, -55%);
   color: #fff;
+  // height: 280px;
+  // width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  text-shadow: -3px 2px 1px black;
+  // background-color: rgba(0, 0, 0, 0.85);
+}
+@media screen and(max-width:800px) {
+  .home__img__wrapper h2 {
+    width: 100%;
+    text-align: center;
+  }
 }
 .home__img {
   width: 100%;
@@ -483,7 +530,7 @@ input {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
   // margin: 0 auto;
   background: #20232a;
 }
@@ -543,6 +590,23 @@ input {
   border: none;
   font-size: 1rem;
 }
+.active_wrapperhdrNavMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+@media screen and(max-width:800px) {
+  .header__signOutbtn {
+    position: relative;
+    top: 15vh;
+  }
+}
 .header__signOutbtn:hover {
   color: #fff;
   cursor: pointer;
@@ -567,7 +631,7 @@ input {
   transition: padding ease 1s;
 }
 .wrapper__room__busyRoom {
-  height: 30px;
+  height: 22px;
   width: 100%;
   margin: 0px auto;
   background: #292b31;
@@ -641,6 +705,7 @@ input {
   align-items: center;
   box-shadow: 0px 4px 15px #fff;
   border-radius: 10px;
+  padding: 0 20px;
 }
 @media screen and (max-width: 800px) {
   .Modal {
@@ -669,4 +734,48 @@ input {
 }
 .ExactRoom__h1 {
   background: #20232a;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  background: #20232a;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and(max-width:800px) {
+  .gallery {
+    justify-content: center;
+  }
+}
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery__item {
+  width: 300px;
+  height: 300px;
+  margin: 30px 10px 0;
+}
+.services {
+  width: 100%;
+  min-height: 90vh;
+  padding: 20px;
+  background-color: #20232a;
+}
+.services p {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.5rem;
+  line-height: 40px;
+  width: 90%;
+  margin: 0 auto;
+}
+.services img {
+  width: 100%;
+  object-fit: cover;
+  margin: 15px 0;
+}
+.inputsError {
+  color: red;
+  margin-top: 5px;
 }

@@ -1,21 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
-import firebase from '../firebase';
-import Contacts from './Contacts';
-import Home from './Home';
-import Rooms from './Rooms';
-import PrivateRoute from '../PrivateRoute';
-import SignUp from './SignUp';
-import Login from './Login';
-import { AuthContext } from '../Auth';
-import ExactRoom from './ExactRoom';
-import getRooms from './getRooms';
-import { About } from './About';
-import { Booked } from './Booked';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-function Header() {
-  const flats = getRooms();
+function Header({ currentUser, handleSignOut }) {
+  // useLayoutEffect(() => {
+
+  // }, []);
+  const [size, setSize] = useState(window.innerWidth);
   useEffect(() => {
+    function updateSizeListener() {
+      setSize(window.innerWidth);
+    }
+    window.addEventListener('resize', updateSizeListener);
     function toggleMobileMenu() {
       hdrNavMobile.classList.toggle('hdr__navMobile');
       setTimeout(() => {
@@ -24,31 +19,31 @@ function Header() {
       mobileMenuLine1.classList.toggle('active_line_top');
       mobileMenuLine2.classList.toggle('active_line_center');
       mobileMenuLine3.classList.toggle('active_line_bottom');
+      wrapperhdrNavMobile.classList.toggle('active_wrapperhdrNavMobile');
     }
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenuLine1 = document.getElementById('mobileMenuLine1');
     const mobileMenuLine2 = document.getElementById('mobileMenuLine2');
     const mobileMenuLine3 = document.getElementById('mobileMenuLine3');
+    const wrapperhdrNavMobile = document.getElementById('wrapperhdrNavMobile');
     const hdrNavMobile = document.getElementById('hdrNavMobile');
-    if (window.matchMedia('(max-width: 800px)').matches) {
-      hdrNavMobile.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A' || e.target) {
-          toggleMobileMenu();
-        }
-      });
+    function toggleMobileMenuListener(e) {
+      if (e.target.tagName === 'A' || e.target.classList.contains('active_wrapperhdrNavMobile')) {
+        toggleMobileMenu();
+      }
+    }
+    if (size <= 800) {
+      wrapperhdrNavMobile.addEventListener('click', toggleMobileMenuListener);
+    } else if (size > 800) {
+      wrapperhdrNavMobile.removeEventListener('click', toggleMobileMenuListener);
     }
 
     mobileMenuBtn.addEventListener('click', function(e) {
       e.preventDefault();
       toggleMobileMenu();
     });
-  }, []);
-  // console.log(flats);
-  const { currentUser } = useContext(AuthContext);
-  const handleSignOut = e => {
-    e.preventDefault();
-    firebase.auth().signOut();
-  };
+  }, [size]);
+
   const signOut = !!currentUser ? (
     <li>
       <button className={'header__signOutbtn'} rel="nofollow" onClick={handleSignOut}>
@@ -56,88 +51,59 @@ function Header() {
       </button>
     </li>
   ) : null;
-  const WrappedRooms = function(props) {
-    return <Rooms {...props} flats={flats} />;
-  };
-  const WrappedExatRoom = function(props) {
-    return <ExactRoom {...props} flats={flats} />;
-  };
-  const WrappedBooked = function(props) {
-    return <Booked {...props} flats={flats} id={currentUser.uid} />;
-  };
   return (
     <>
       <header className="header">
-        <nav className="hdr__nav" id="hdrNavMobile">
-          <ul className="hrd__nav__ul">
-            <li>
-              <NavLink exact to="/">
-                Главная
-              </NavLink>
-            </li>
-            {!!currentUser ? null : (
+        <div className="wrapper__navMob" id="wrapperhdrNavMobile">
+          <nav className="hdr__nav" id="hdrNavMobile">
+            <ul className="hrd__nav__ul">
               <li>
-                <NavLink to="/signUp">Зарегистрироваться/Войти</NavLink>
+                <NavLink exact to="/">
+                  Главная
+                </NavLink>
               </li>
-            )}
-            {!!currentUser ? (
-              <li>
-                <NavLink to="/booked">Забронированные номера</NavLink>
-              </li>
-            ) : null}
+              {!!currentUser ? null : (
+                <li>
+                  <NavLink to="/signUp">Зарегистрироваться/Войти</NavLink>
+                </li>
+              )}
+              {!!currentUser ? (
+                <li>
+                  <NavLink to="/booked">Забронированные номера</NavLink>
+                </li>
+              ) : null}
 
-            <li>
-              <NavLink to="/rooms" exact>
-                Номера
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/contacts">Контакты</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">О нас</NavLink>
-              <ul>
-                <li>
-                  <NavLink to="/rooms/one">Одноместные</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/rooms/two">Двухместные</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/rooms/three">Трёхместные</NavLink>
-                </li>
-              </ul>
-            </li>
-            {signOut}
-          </ul>
-        </nav>
+              <li>
+                <NavLink to="/rooms" exact>
+                  Номера
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/about">О нас</NavLink>
+                <ul>
+                  <li>
+                    <NavLink to="/contacts">Контакты</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/services">Услуги</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/gallery">Галерея</NavLink>
+                  </li>
+                </ul>
+              </li>
+              {signOut}
+            </ul>
+          </nav>
+        </div>
+
         <div className="header__mobile-button" id="mobileMenuBtn">
           <span className="header__mobile-button-line" id="mobileMenuLine1"></span>
           <span className="header__mobile-button-line" id="mobileMenuLine2"></span>
           <span className="header__mobile-button-line" id="mobileMenuLine3"></span>
         </div>
       </header>
-      <Switch>
-        <PrivateRoute path={`/rooms/:id`} component={WrappedExatRoom} />
-        <PrivateRoute path={`/booked`} component={WrappedBooked} />
-        <Route path="/contacts">
-          <Contacts />
-        </Route>
-        <Route path="/signUp">
-          <SignUp />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-
-        <Route exact path="/rooms" component={WrappedRooms}></Route>
-      </Switch>
     </>
   );
 }

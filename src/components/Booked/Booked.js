@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
-import firebase from '../firebase';
-import { BookedEmpty } from './Booked/bookedEmpty';
+import firebase from '../../firebase';
+import { BookedEmpty } from './bookedEmpty';
 export const Booked = props => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const { flats } = props;
   const inclededArray = new Set([]);
-  const arryIncludeId = flats.forEach(room => {
+  flats.forEach(room => {
     room.payload.forEach(item => {
       if (item.id === props.id) {
-        console.log(item.id);
-        console.log(props.id);
         inclededArray.add(room);
       }
     });

@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MyCalendar from './MyCalendar';
-import booking from './booking';
+import booking from '../functions/booking';
 import { AuthContext } from '../Auth';
-import Modal from 'react-modal';
+import { Modals } from './Modals';
 import { BusyRoom } from './BusyRoom';
 import { SelectedRoom } from './SelectedRoom';
-Modal.setAppElement('#root');
+import formatDateTo from '../functions/formatDateTo';
+
 function ExactRoom(props) {
-  const dateNow = new Date();
-  const dayNow = dateNow.getDate();
-  const yearNow = dateNow.getFullYear();
-  const monthNow = dateNow.getMonth();
-  const formatedDay = formatDateTo(yearNow, monthNow, dayNow);
+  // const dateNow = new Date();
+  // const dayNow = dateNow.getDate();
+  // const yearNow = dateNow.getFullYear();
+  // const monthNow = dateNow.getMonth();
+  // const formatedDay = formatDateTo(yearNow, monthNow, dayNow);
   const [showModal, setShowModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const [rooms, setRooms] = useState(false);
-  const [room, setRoom] = useState(
+  const [room] = useState(
     props.flats.find(room => {
       if (room.id === props.match.params.id) {
         return room;
@@ -32,42 +33,24 @@ function ExactRoom(props) {
   };
   const [dateIn, setDateIn] = useState('');
   const [dateOut, setDateOut] = useState('');
-  const [fullDate, setFullDate] = useState(formatedDay);
-  const [fullDateOut, setFullDateOut] = useState(formatedDay);
+  const [fullDate, setFullDate] = useState('');
+  const [fullDateOut, setFullDateOut] = useState('');
 
   const [book, setBook] = useState('');
-  // let dateStr;
-  function formatDateTo(years, month, day) {
-    let dayTrue;
-    if (day < 9) {
-      dayTrue = `0${day}`;
-    } else {
-      dayTrue = day;
-    }
-    let monthTrue;
-    if (month < 9) {
-      monthTrue = `0${month + 1}`;
-    } else {
-      monthTrue = month + 1;
-    }
-    const dateStr = `${years}-${monthTrue}-${dayTrue}`;
-    return dateStr;
-  }
   const onChangeDay = (days, months, years, name) => {
     const dateStr = formatDateTo(years, months, days);
     switch (name) {
       case 'dateIn':
         setFullDate(dateStr);
-        setDateIn(`${years},${months},${days}`);
+        setDateIn(`${years}-${months}-${days}`);
         break;
       case 'dateOut':
         setFullDateOut(dateStr);
-        setDateOut(`${years},${months},${days}`);
+        setDateOut(`${years}-${months}-${days}`);
 
         break;
     }
   };
-  console.log(dateIn);
   useEffect(() => {
     window.scrollTo(0, 0);
     room ? setRooms(true) : setRooms(false);
@@ -84,6 +67,8 @@ function ExactRoom(props) {
   };
   const submitDate = e => {
     e.preventDefault();
+    // fullDate
+    // fullDateOut
     const text = booking(1, fullDate, fullDateOut, currentUser.uid, room, dateIn, dateOut);
     setBook(
       text ? text : `<h1 class={'ExactRoom__bookedTag'}>Вы забронировали номер ${fullDate}</h1>`
@@ -98,19 +83,7 @@ function ExactRoom(props) {
   return (
     <>
       {rooms && <SelectedRoom room={room} />}
-      <Modal
-        isOpen={showModal}
-        contentLabel="onRequestClose"
-        onRequestClose={handleCloseModal}
-        className="Modal"
-        overlayClassName="Overlay"
-      >
-        {book}
-        <button onClick={handleCloseModal} className="modalClose__btn">
-          X
-        </button>
-      </Modal>
-      {/* <div className={'wrappere_forCalendar'}></div> */}
+      <Modals isOpen={showModal} onRequestClose={handleCloseModal} text={book} />
       {room.payload.length > 0 ? (
         <BusyRoom busyRoom={room.payload} onClick={openBusyRoom} isOpen={isOpenBusyRoom} />
       ) : null}
@@ -125,6 +98,7 @@ function ExactRoom(props) {
               onChange={onChangeDayForInput}
               className={'booking_inputDate'}
               name="dateIn"
+              hidden
             />
           </div>
           <div className={'wrapper_forInputDate'}>
@@ -136,6 +110,7 @@ function ExactRoom(props) {
               onChange={onChangeDayForInput}
               className={'booking_inputDate'}
               name="dateOut"
+              hidden
             />
           </div>
         </div>

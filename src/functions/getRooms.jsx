@@ -16,7 +16,6 @@ function GetRooms() {
         setFlats(newRooms);
       });
   }, []);
-  console.log(flats);
   return flats;
 }
 export default GetRooms;
