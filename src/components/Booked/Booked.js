@@ -55,7 +55,14 @@ export const Booked = props => {
       )}
 
       {[...inclededArray].map((room, i) => (
-        <div key={i} className={'wrapper__room selected__room'}>
+        <div
+          key={i}
+          className={
+            [...inclededArray].length === 1
+              ? 'wrapper__room selected__roomOne'
+              : 'wrapper__room selected__room'
+          }
+        >
           <img src={room.img} alt="dsfsd" className="room__img" />
           <ul className="room__ordered__descrp">
             {room.payload.map(item =>
