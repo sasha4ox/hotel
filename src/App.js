@@ -181,7 +181,7 @@ let arrayOfHottel = [
 //   ];
 //   element.tags = item[element.rooms - 1];
 //   element.tags += element.sauna ? 'сауна' : '';
-//   element.tags += element.luxury ? 'люкс' : '';
+//   element.tags += element.luxury ? 'люкс' : 'комфортабельный';
 //   firebase
 //     .firestore()
 //     .collection('flats')

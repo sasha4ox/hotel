@@ -15,6 +15,7 @@ function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
     const date2 = new Date(dateArTwo[0], dateArTwo[1], dateArTwo[2]);
     return date1 > date2;
   }
+
   const incAr = room.payload.filter(
     item =>
       (compareDate(dateIn, item.dateIn) && compareDate(item.dateOut, dateIn)) ||
@@ -32,7 +33,7 @@ function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
   if (incAr.length) {
     return (
       <>
-        <h1 className="ExactRoom__choiceDateTag">Извините, номер занят. Выберите другой день</h1>
+        <h1 className="ExactRoom__choiceDateInfo">Извините, номер занят. Выберите другой день</h1>
       </>
     );
   } else {

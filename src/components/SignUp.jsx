@@ -77,7 +77,7 @@ const SignUp = ({ history }) => {
           Есть аккаунт?
         </NavLink>
         <button type="submit" className={'signUp__btn'}>
-          Войти
+          Зарегистрироваться
         </button>
       </form>
       {errorFire && <p className="inputsError">{errorFire}</p>}

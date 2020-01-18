@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-export const RoomsView = ({ currentFlats }) => {
+export const RoomView = ({ currentFlats }) => {
   return (
-    <div>
+    <main>
       {currentFlats.map(flat => (
         <div key={flat.id} className="wrapper__room" data-id={flat.id}>
           <img src={flat.img} alt="flat.rooms" className="room__img" />
@@ -21,6 +21,6 @@ export const RoomsView = ({ currentFlats }) => {
           </NavLink>
         </div>
       ))}
-    </div>
+    </main>
   );
 };

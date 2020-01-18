@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination } from './Pagination';
-import { RoomsView } from './RoomsView';
-
-// import getRooms from './getRooms';
-// import { AuthContext } from '../Auth';
+import { RoomView } from './RoomView';
 
 function Rooms(props) {
-  // const flats = props.flats;
-
-  const [flats, setFlats] = useState([]);
+  const [flats, setFlats] = useState(props.flats);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(4);
   const [search, setSearch] = useState('');
-  useEffect(() => {
-    setFlats(props.flats);
-  }, [props.flats]);
-  const searcedArray = flats.filter(room => {
+  const [isLoad, setIsLoad] = useState(false);
+  const [isReverseArrya, setIsReverseArrya] = useState(false);
+  const [isPriceUpCheked, setIsPriceUpCheked] = useState(false);
+  const [isPriceDownCheked, setIsPriceDownCheked] = useState(false);
+  const [selectedRadio, setSelectedRadio] = useState('');
+
+  const searchedArray = flats.filter(room => {
     return room.tags.toLowerCase().includes(search.toLowerCase());
   });
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentFlats = searcedArray.slice(indexOfFirstPost, indexOfLastPost);
+  const currentFlats = searchedArray.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => {
     setCurrentPage(pageNumber);
@@ -33,28 +31,49 @@ function Rooms(props) {
   const sumbmitSearch = e => {
     e.preventDefault();
   };
-  // console.log(searcedArray);
-  // console.log(flats);
+  const sortByPrice = () => {
+    const sorted = flats.sort(function(a, b) {
+      return a.price - b.price;
+    });
+    setFlats(isPriceUpCheked ? sorted : sorted.reverse());
+    setIsPriceUpCheked(!isPriceUpCheked);
+    setCurrentPage(1);
+  };
+
   return (
-    <>
-      <div className={'wrapper__forSearch'}>
-        <form action="" onSubmit={sumbmitSearch}>
-          <label htmlFor="searchRoom">Поиск номера</label>
-          <input type="text" onChange={handleFind} id={'searchRoom'} value={search} />
-        </form>
-      </div>
-      {currentFlats.length > 0 ? (
-        <RoomsView currentFlats={currentFlats} />
-      ) : (
-        <h1> Сорян, ничего не найденно</h1>
-      )}
-      <Pagination
-        postPerPage={postPerPage}
-        totalPost={searcedArray.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
-    </>
+    <div className="wrapper__rooms">
+      {/* {isLoad ? <h2>sdsadsa</h2> : <h1>111111111</h1>} */}
+      <aside className={'rooms__aside'}>
+        <div className="wrapper__room__aside__inner">
+          <form onSubmit={sumbmitSearch} className="form__rooms">
+            <label htmlFor="searchRoom">Поиск номера</label>
+            <input
+              type="text"
+              onChange={handleFind}
+              id={'searchRoom'}
+              value={search}
+              placeholder="люкс, сауна, кол-во комнат"
+            />
+          </form>
+          <button onClick={sortByPrice} className="form__rooms__btn">
+            По цене
+          </button>
+        </div>
+      </aside>
+      <section className="rooms__section">
+        {currentFlats.length > 0 ? (
+          <RoomView currentFlats={currentFlats} />
+        ) : (
+          <h1> Извините, ничего не найденно</h1>
+        )}
+        <Pagination
+          postPerPage={postPerPage}
+          totalPost={searchedArray.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      </section>
+    </div>
   );
 }
 export default Rooms;

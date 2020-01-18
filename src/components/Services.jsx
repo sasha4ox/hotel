@@ -6,6 +6,7 @@ import del4 from '../img/Ristorante.JPG';
 export const Services = () => {
   return (
     <div className="services">
+      <h1 className="services__h1">Услуги</h1>
       <p>
         Хотите отправиться в кругосветное путешествие по кухням мира? Вам предложат превосходные
         блюда из самых разных стран: от Италии до Японии, от богатой кулинарными традициями Индии до

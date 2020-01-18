@@ -25,6 +25,13 @@ h1 {
   justify-content: flex-start;
   align-items: center;
   z-index: 1;
+  position: fixed;
+  width: 100%;
+}
+@media screen and(max-width:800px) {
+  .header {
+    flex-direction: row-reverse;
+  }
 }
 .hrd__nav__ul {
   display: flex;
@@ -263,11 +270,61 @@ h1 {
   justify-content: center;
   align-items: center;
 }
-.wrapper__forSearch {
-  margin: 10px;
+.rooms__aside {
+  position: relative;
+  width: 29%;
 }
-.wrapper__forSearch input {
-  margin-left: 10px;
+@media screen and(max-width:800px) {
+  .rooms__aside {
+    width: 100%;
+  }
+}
+// .rooms__aside input {
+//   margin-left: 10px;
+// }
+.form__rooms {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form__rooms label {
+  color: #fff;
+  margin-bottom: 10px;
+}
+.form__rooms input {
+  width: 100%;
+}
+.form__rooms__btn {
+  width: 100%;
+  background: #292b31;
+  outline: none;
+  color: #61dafb;
+  border: none;
+  height: 40px;
+  margin-top: 15px;
+  &:hover {
+    cursor: pointer;
+    background-color: #292b31;
+  }
+}
+
+.wrapper__room__aside__inner {
+  position: fixed;
+  left: 0px;
+  padding: 15px;
+  width: 29%;
+  // max-height: 40vh;
+  background-color: #20232a;
+  border-radius: 0 10px 10px 0;
+}
+@media screen and(max-width:800px) {
+  .wrapper__room__aside__inner {
+    position: static;
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    margin-bottom: 10px;
+  }
 }
 // @media screen and(max-width:800px) {
 //   .wrapper__forSearch input {
@@ -397,15 +454,15 @@ input {
   transform: rotateZ(-45deg) translateX(1px);
 }
 .wrapper__signUp {
-  width: 95%;
-
-  margin: 20px auto;
-  padding: 40px 0;
+  width: 100%;
+  margin: 0 auto 0px;
+  padding: 10vh 0 40px;
   background-color: #20232a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 .wrapper__signUp form {
   display: flex;
@@ -446,11 +503,10 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 95%;
-  margin: 20px auto;
+  width: 100%;
   background: #20232a;
-  padding: 50px 0;
-  // height: 95vh;
+  padding: 10vh 0 40px;
+  height: 100vh;
 }
 .wrapper__logIn form {
   display: flex;
@@ -513,7 +569,8 @@ input {
 .wrapper__slider {
   background: #292b31;
   // padding: 20px 0;
-  height: 90vh;
+  padding-top: 10vh;
+  height: 100vh;
 }
 // @media screen and(max-width:800px) {
 //   .wrapper__slider {
@@ -528,6 +585,11 @@ input {
 .ExactRoom__choiceDateTag {
   text-align: center;
   color: #fff;
+  padding-top: 10vh;
+}
+.ExactRoom__choiceDateInfo {
+  text-align: center;
+  color: #fff;
 }
 .ExactRoom__bookedTag {
   text-align: center;
@@ -537,7 +599,8 @@ input {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
+  padding-top: 10vh;
   // margin: 0 auto;
   background: #20232a;
 }
@@ -557,7 +620,7 @@ input {
   width: 100%;
   background: #20232a;
   margin: 0 auto 0;
-  padding-bottom: 40px;
+  padding: 10vh 0 40px;
   display: flex;
   flex-direction: column;
 }
@@ -749,6 +812,7 @@ input {
   background: #20232a;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10vh;
 }
 @media screen and(max-width:800px) {
   .gallery {
@@ -768,8 +832,13 @@ input {
 .services {
   width: 100%;
   min-height: 90vh;
-  padding: 20px;
+  padding: 10vh 20px 20px;
   background-color: #20232a;
+}
+.services__h1 {
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
 }
 .services p {
   color: rgba(255, 255, 255, 0.4);
@@ -786,4 +855,35 @@ input {
 .inputsError {
   color: red;
   margin-top: 5px;
+}
+.header__logoBlock {
+  height: 10vh;
+  width: 70px;
+  display: flex;
+}
+.header__logoBlock__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-left: 5px;
+}
+.wrapper__rooms {
+  padding-top: 11vh;
+  display: flex;
+  justify-content: space-between;
+}
+.rooms__section {
+  width: 70%;
+}
+@media screen and(max-width:800px) {
+  .header__logoBlock {
+    position: absolute;
+    left: 10px;
+  }
+  .wrapper__rooms {
+    flex-direction: column;
+  }
+  .rooms__section {
+    width: 100%;
+  }
 }

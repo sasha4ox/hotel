@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../img/logo.png';
 
 function Header({ currentUser, handleSignOut }) {
-  // useLayoutEffect(() => {
-
-  // }, []);
   const [size, setSize] = useState(window.innerWidth);
   useEffect(() => {
     function updateSizeListener() {
@@ -54,6 +52,11 @@ function Header({ currentUser, handleSignOut }) {
   return (
     <>
       <header className="header">
+        <div className="header__logoBlock">
+          <NavLink to="/">
+            <img src={logo} alt="Logo" className="header__logoBlock__img" />
+          </NavLink>
+        </div>
         <div className="wrapper__navMob" id="wrapperhdrNavMobile">
           <nav className="hdr__nav" id="hdrNavMobile">
             <ul className="hrd__nav__ul">
