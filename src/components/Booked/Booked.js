@@ -15,8 +15,6 @@ export const Booked = props => {
     });
   });
   const deleteOrder = (id, date) => {
-    console.log(id);
-    console.log(date);
     const ref = firebase
       .firestore()
       .collection('flats')
@@ -32,7 +30,6 @@ export const Booked = props => {
       }
       return true;
     });
-    console.log(withoutDeletedArray);
     ref
       .update({
         payload: withoutDeletedArray,
@@ -41,11 +38,9 @@ export const Booked = props => {
         console.log('Document successfully updated!');
       })
       .catch(function(error) {
-        // The document probably doesn't exist.
         console.error('Error updating document: ', error);
       });
   };
-  console.log(inclededArray.size);
   return (
     <main className="ExactRoom__choiceDateTag">
       {inclededArray.size === 0 ? (

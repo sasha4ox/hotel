@@ -11,7 +11,7 @@ export const Modals = props => {
       overlayClassName="Overlay"
     >
       {props.text}
-      {props.img && <img src={props.img} className="img__open__Modal"></img>}
+      {props.img && <img src={props.img} className="img__open__Modal" alt={props.img}></img>}
       <button onClick={props.onRequestClose} className={props.classNameForBtnClose}>
         X
       </button>

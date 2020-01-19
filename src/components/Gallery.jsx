@@ -12,7 +12,6 @@ export const Gallery = ({ flats }) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  console.log(flats);
   return (
     <main className="gallery">
       <Modals
@@ -31,7 +30,6 @@ export const Gallery = ({ flats }) => {
           >
             <img src={item.img} alt={item.id} className="gallery__img" />
           </a>
-          {/* <div></div> */}
         </div>
       ))}
     </main>

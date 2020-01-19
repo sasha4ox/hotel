@@ -8,16 +8,11 @@ import { SelectedRoom } from './SelectedRoom';
 import formatDateTo from '../functions/formatDateTo';
 
 function ExactRoom(props) {
-  // const dateNow = new Date();
-  // const dayNow = dateNow.getDate();
-  // const yearNow = dateNow.getFullYear();
-  // const monthNow = dateNow.getMonth();
-  // const formatedDay = formatDateTo(yearNow, monthNow, dayNow);
   const [showModal, setShowModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const [rooms, setRooms] = useState(false);
   const [room] = useState(
-    props.flats.find(room => {
+    props.flats.find(function(room) {
       if (room.id === props.match.params.id) {
         return room;
       }
@@ -35,7 +30,6 @@ function ExactRoom(props) {
   const [dateOut, setDateOut] = useState('');
   const [fullDate, setFullDate] = useState('');
   const [fullDateOut, setFullDateOut] = useState('');
-
   const [book, setBook] = useState('');
   const onChangeDay = (days, months, years, name) => {
     const dateStr = formatDateTo(years, months, days);
@@ -47,8 +41,8 @@ function ExactRoom(props) {
       case 'dateOut':
         setFullDateOut(dateStr);
         setDateOut(`${years}-${months}-${days}`);
-
         break;
+      default:
     }
   };
   useEffect(() => {
@@ -63,13 +57,12 @@ function ExactRoom(props) {
       case 'dateOut':
         setFullDateOut(e.target.value);
         break;
+      default:
     }
   };
   const submitDate = e => {
     e.preventDefault();
-    // fullDate
-    // fullDateOut
-    const text = booking(1, fullDate, fullDateOut, currentUser.uid, room, dateIn, dateOut);
+    const text = booking(fullDate, fullDateOut, currentUser.uid, room, dateIn, dateOut);
     setBook(
       text ? text : `<h1 class={'ExactRoom__bookedTag'}>Вы забронировали номер ${fullDate}</h1>`
     );

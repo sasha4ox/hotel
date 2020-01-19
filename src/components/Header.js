@@ -3,56 +3,32 @@ import { NavLink } from 'react-router-dom';
 import logo from '../img/logo.png';
 
 function Header({ currentUser, handleSignOut }) {
+  const [mobileNenuIsOpen, setMobileNenuIsOpen] = useState(false);
+  const [mobileWrapperIsAppear, setMobileWrapperIsAppear] = useState(false);
   const [size, setSize] = useState(window.innerWidth);
   useEffect(() => {
     function updateSizeListener() {
       setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSizeListener);
-    function toggleMobileMenu() {
-      hdrNavMobile.classList.toggle('hdr__navMobile');
-      setTimeout(() => {
-        hdrNavMobile.classList.toggle('hdr__navAnimation');
-      }, 0);
-      mobileMenuLine1.classList.toggle('active_line_top');
-      mobileMenuLine2.classList.toggle('active_line_center');
-      mobileMenuLine3.classList.toggle('active_line_bottom');
-      wrapperhdrNavMobile.classList.toggle('active_wrapperhdrNavMobile');
-    }
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenuLine1 = document.getElementById('mobileMenuLine1');
-    const mobileMenuLine2 = document.getElementById('mobileMenuLine2');
-    const mobileMenuLine3 = document.getElementById('mobileMenuLine3');
-    const wrapperhdrNavMobile = document.getElementById('wrapperhdrNavMobile');
-    const hdrNavMobile = document.getElementById('hdrNavMobile');
-    function toggleMobileMenuListener(e) {
-      if (e.target.tagName === 'A' || e.target.classList.contains('active_wrapperhdrNavMobile')) {
-        toggleMobileMenu();
-      }
-    }
+    return () => {
+      window.removeEventListener('resize', updateSizeListener);
+    };
+  }, []);
+  const openMobileMenu = () => {
+    setMobileNenuIsOpen(!mobileNenuIsOpen);
+    setMobileWrapperIsAppear(!mobileWrapperIsAppear);
+  };
+  const closeMobileNenu = e => {
     if (size <= 800) {
-      console.log('Less');
-      wrapperhdrNavMobile.classList.add('Desctop');
-      if (wrapperhdrNavMobile.classList.contains('Desctop')) {
-        wrapperhdrNavMobile.classList.remove('Desctop');
-        wrapperhdrNavMobile.classList.add('Mobile');
-        wrapperhdrNavMobile.addEventListener('click', toggleMobileMenuListener);
-        mobileMenuBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          toggleMobileMenu();
-        });
-      }
-    } else if (size > 800) {
-      console.log('More');
-      wrapperhdrNavMobile.classList.add('Mobile');
-      if (wrapperhdrNavMobile.classList.contains('Mobile')) {
-        wrapperhdrNavMobile.classList.remove('Mobile');
-        wrapperhdrNavMobile.classList.add('Desctop');
-        wrapperhdrNavMobile.removeEventListener('click', toggleMobileMenuListener);
+      if (e.currentTarget === e.target || e.target.tagName === 'A') {
+        setMobileNenuIsOpen(!mobileNenuIsOpen);
+        setTimeout(() => {
+          setMobileWrapperIsAppear(!mobileWrapperIsAppear);
+        }, 350);
       }
     }
-  }, [size]);
-
+  };
   const signOut = !!currentUser ? (
     <li>
       <button className={'header__signOutbtn'} rel="nofollow" onClick={handleSignOut}>
@@ -68,8 +44,15 @@ function Header({ currentUser, handleSignOut }) {
             <img src={logo} alt="Logo" className="header__logoBlock__img" />
           </NavLink>
         </div>
-        <div className="wrapper__navMob" id="wrapperhdrNavMobile">
-          <nav className="hdr__nav" id="hdrNavMobile">
+        <div
+          className={`wrapper__navMob ${mobileWrapperIsAppear ? 'active_wrapperhdrNavMobile' : ''}`}
+          onClick={closeMobileNenu}
+        >
+          <nav
+            className={`hdr__nav ${
+              mobileNenuIsOpen ? `hdr__navMobile__show hdr__navAnimation` : `hdr__navMobile__hide`
+            }`}
+          >
             <ul className="hrd__nav__ul">
               <li>
                 <NavLink exact to="/">
@@ -111,10 +94,10 @@ function Header({ currentUser, handleSignOut }) {
             </ul>
           </nav>
         </div>
-        <div className="header__mobile-button" id="mobileMenuBtn">
-          <span className="header__mobile-button-line" id="mobileMenuLine1"></span>
-          <span className="header__mobile-button-line" id="mobileMenuLine2"></span>
-          <span className="header__mobile-button-line" id="mobileMenuLine3"></span>
+        <div className="header__mobile-button" onClick={openMobileMenu}>
+          <span className="header__mobile-button-line"></span>
+          <span className="header__mobile-button-line"></span>
+          <span className="header__mobile-button-line"></span>
         </div>
       </header>
     </>

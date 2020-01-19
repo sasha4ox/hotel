@@ -1,4 +1,3 @@
-/* autoprefixer grid: autoplace */
 * {
   margin: 0;
   padding: 0;
@@ -55,11 +54,6 @@ h1 {
   font-size: 1rem;
   padding: 0 20px;
   border-right: 1px solid #61dafb;
-  // width: 100%;
-  // height: 100%;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
 }
 .hrd__nav__ul li a.active {
   color: #ffe;
@@ -107,29 +101,20 @@ h1 {
     background-color: #20232a;
     height: 100%;
     transform: translateX(90vw);
-    transition: all ease 1s;
-    z-index: 1;
-    display: none;
+    transition: transform ease 1s;
   }
   .hdr__navAnimation {
     transform: translateX(0vw);
-    z-index: 1;
-  }
-  .hdr__navMobile {
-    display: block;
   }
   .hrd__nav__ul {
     flex-direction: column;
     margin-top: 20px;
   }
   .hrd__nav__ul li {
-    // margin-top: 10px;
     height: 5vh;
   }
   .hrd__nav__ul li a {
     border-right: none;
-    // width: 100%;
-    // height: 100%;
   }
   .hrd__nav__ul li button {
     border-right: none;
@@ -156,7 +141,6 @@ h1 {
   min-height: 90vh;
   margin: 0;
   border-radius: 0;
-  // justify-content: center;
 }
 .room__choicedApText {
   text-align: center;
@@ -198,7 +182,6 @@ h1 {
   flex-direction: column;
   width: 90%;
   margin: 15px auto;
-  // align-items: center;
 }
 .room__description__selected p {
   color: rgba(255, 255, 255, 0.4);
@@ -279,9 +262,6 @@ h1 {
     width: 100%;
   }
 }
-// .rooms__aside input {
-//   margin-left: 10px;
-// }
 .form__rooms {
   display: flex;
   flex-direction: column;
@@ -326,12 +306,6 @@ h1 {
     margin-bottom: 10px;
   }
 }
-// @media screen and(max-width:800px) {
-//   .wrapper__forSearch input {
-//     width: 80%;
-//     margin: 0 auto;
-//   }
-// }
 .orderRoom {
   text-decoration: none;
   color: black;
@@ -349,15 +323,6 @@ h1 {
 .pagination_nav {
   margin: 20px 0;
 }
-
-// .wrapper_forInputDate form {
-//   padding-top: 25px;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: #20232a;
-//   width: 95%;
-//   margin: 0 auto;
-// }
 input {
   width: 280px;
   height: 35px;
@@ -415,8 +380,6 @@ input {
   margin: 0px auto;
   max-width: 280px;
 }
-
-//Mobile btm menu
 .header__mobile-button {
   display: none;
   margin-left: 10px;
@@ -537,7 +500,6 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  // position: relative;
 }
 .home__img__wrapper h2 {
   position: absolute;
@@ -545,14 +507,11 @@ input {
   right: 50%;
   transform: translate(50%, -55%);
   color: #fff;
-  // height: 280px;
-  // width: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   text-shadow: -3px 2px 1px black;
-  // background-color: rgba(0, 0, 0, 0.85);
 }
 @media screen and(max-width:800px) {
   .home__img__wrapper h2 {
@@ -568,20 +527,9 @@ input {
 }
 .wrapper__slider {
   background: #292b31;
-  // padding: 20px 0;
   padding-top: 10vh;
   height: 100vh;
 }
-// @media screen and(max-width:800px) {
-//   .wrapper__slider {
-//     height: 290px;
-//   }
-// }
-// @media screen and(max-width:400px) {
-//   .wrapper__slider {
-//     height: 220px;
-//   }
-// }
 .ExactRoom__choiceDateTag {
   text-align: center;
   color: #fff;
@@ -660,6 +608,7 @@ input {
   border: none;
   font-size: 1rem;
 }
+
 .active_wrapperhdrNavMobile {
   position: fixed;
   top: 0;
@@ -671,6 +620,7 @@ input {
   height: 100%;
   z-index: 1;
 }
+
 @media screen and(max-width:800px) {
   .header__signOutbtn {
     position: relative;
@@ -826,7 +776,7 @@ input {
   border: none;
   border-radius: 50%;
   position: absolute;
-  top: 10vh;
+  top: 15px;
   right: 15px;
   color: #fff;
 }
@@ -846,11 +796,7 @@ input {
   padding-top: 10vh;
   min-height: 100vh;
 }
-// @media screen and(max-width:800px) {
-//   .gallery {
-//     justify-content: center;
-//   }
-// }
+
 .img__open__Modal {
   object-fit: contain;
   width: 100%;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from '../firebase';
 
-function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
+function booking(fullday, fullDateOut, context, room, dateIn, dateOut) {
   const dateNow = new Date();
   const dayNow = dateNow.getDate();
   const yearNow = dateNow.getFullYear();
@@ -30,7 +30,13 @@ function booking(id, fullday, fullDateOut, context, room, dateIn, dateOut) {
       (compareDate(item.dateIn, dateIn) && compareDate(dateOut, item.dateOut))
     // (compareDate(item.dateIn, dateIn) && compareDate(item.dateOut, dateOut))
   );
-  if (incAr.length) {
+  if (compareDate(dateIn, dateOut) || compareDate(dateStrNow, dateIn)) {
+    return (
+      <>
+        <h1 className="ExactRoom__choiceDateInfo">Вы не правильно выбрали дату</h1>
+      </>
+    );
+  } else if (incAr.length) {
     return (
       <>
         <h1 className="ExactRoom__choiceDateInfo">Извините, номер занят. Выберите другой день</h1>

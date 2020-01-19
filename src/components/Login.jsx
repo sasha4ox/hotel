@@ -12,7 +12,7 @@ const Login = ({ history }) => {
     async event => {
       event.preventDefault();
       const { email, password } = event.target.elements;
-      const regEx = email.value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+      const regEx = email.value.match(/^[0-9a-z-.]+@[0-9a-z-]{2,}.[a-z]{2,}$/i);
       const passwordIsValid = password.value.length >= 6;
       if (regEx && passwordIsValid) {
         try {
@@ -38,7 +38,7 @@ const Login = ({ history }) => {
     const name = target.name;
 
     if (name === 'email') {
-      const regEx = value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+      const regEx = value.match(/^[0-9a-z-.]+@[0-9a-z-]{2,}.[a-z]{2,}$/i);
       setEmail(value);
       if (!regEx) {
         setEmailIsValid(false);

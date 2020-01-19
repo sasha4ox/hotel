@@ -5,13 +5,8 @@ function Home() {
   return (
     <>
       <main>
-        {/* <h2>I'm awesome main page</h2> */}
         <div className={'wrapper__slider'}>
-          <Slider
-          // hasBullets
-          // auto={5000}
-          // bulletStyle={{ backgroundColor: '#fff', margin: '10px 5px' }}
-          >
+          <Slider auto={5000}>
             <div className={'home__img__wrapper'}>
               <h2>Мы открыты, для Вас</h2>
               <img
