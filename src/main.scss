@@ -537,7 +537,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  // position: relative;
 }
 .home__img__wrapper h2 {
   position: absolute;
@@ -634,7 +634,7 @@ input {
   min-width: 280px;
   background: #292b31;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #fff;
+  box-shadow: 0px 0px 10px #282c35;
   min-height: 350px;
   display: flex;
   flex-direction: column;
@@ -782,6 +782,37 @@ input {
     width: 95%;
   }
 }
+.ModalImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 10vh;
+}
+.ModalImg__close_btn {
+  position: absolute;
+  top: 11vh;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #282c35;
+  border: none;
+  outline: none;
+  color: #fff;
+  box-shadow: 0px 1px 13px #61dafb;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.gallery__imgOpen_btn {
+  // position: absolute;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .Overlay {
   position: fixed;
   top: 0;
@@ -795,7 +826,7 @@ input {
   border: none;
   border-radius: 50%;
   position: absolute;
-  top: 15px;
+  top: 10vh;
   right: 15px;
   color: #fff;
 }
@@ -810,14 +841,19 @@ input {
   display: flex;
   flex-wrap: wrap;
   background: #20232a;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding-top: 10vh;
+  min-height: 100vh;
 }
-@media screen and(max-width:800px) {
-  .gallery {
-    justify-content: center;
-  }
+// @media screen and(max-width:800px) {
+//   .gallery {
+//     justify-content: center;
+//   }
+// }
+.img__open__Modal {
+  object-fit: contain;
+  width: 100%;
 }
 .gallery__img {
   width: 100%;
@@ -827,7 +863,7 @@ input {
 .gallery__item {
   width: 300px;
   height: 300px;
-  margin: 30px 10px 0;
+  margin: 30px 0px 0;
 }
 .services {
   width: 100%;
@@ -886,4 +922,20 @@ input {
   .rooms__section {
     width: 100%;
   }
+}
+.home__about {
+  background: #20232a;
+  h1 {
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    padding: 20px 0;
+  }
+  p {
+    color: rgba(255, 255, 255, 0.4);
+    text-align: justify;
+    padding: 20px 30px;
+  }
+}
+.fb-share-button {
+  margin-top: 20px;
 }

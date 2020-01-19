@@ -12,11 +12,17 @@ const Login = ({ history }) => {
     async event => {
       event.preventDefault();
       const { email, password } = event.target.elements;
-      try {
-        await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
-        history.push('/rooms');
-      } catch (error) {
-        setErrorFire(`${error.message}`);
+      const regEx = email.value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+      const passwordIsValid = password.value.length >= 6;
+      if (regEx && passwordIsValid) {
+        try {
+          await firebase.auth().signInWithEmailAndPassword(email.value, password.value);
+          history.push('/rooms');
+        } catch (error) {
+          setErrorFire(`${error.message}`);
+        }
+      } else {
+        setErrorFire(`Поля не заполненны`);
       }
     },
     [history]
@@ -50,7 +56,7 @@ const Login = ({ history }) => {
     }
   };
   return (
-    <div className={'wrapper__logIn'}>
+    <main className={'wrapper__logIn'}>
       <h1 className={'login__name'}>Войти</h1>
       <form onSubmit={handleLogin}>
         <input
@@ -60,11 +66,11 @@ const Login = ({ history }) => {
           value={email}
           onChange={changeInput}
         />
-        {!emailIsValid && <p className="inputsError">example@gmail.com</p>}
+        {!emailIsValid && <p className="inputsError">Пример: example@gmail.com</p>}
         <input
           type="password"
           name="password"
-          placeholder="qwerty"
+          placeholder="password"
           onChange={changeInput}
           value={password}
         />
@@ -74,7 +80,7 @@ const Login = ({ history }) => {
         </button>
       </form>
       {errorFire && <p className="inputsError">{errorFire}</p>}
-    </div>
+    </main>
   );
 };
 export default withRouter(Login);

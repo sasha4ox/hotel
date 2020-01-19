@@ -47,7 +47,7 @@ export const Booked = props => {
   };
   console.log(inclededArray.size);
   return (
-    <div className="ExactRoom__choiceDateTag">
+    <main className="ExactRoom__choiceDateTag">
       {inclededArray.size === 0 ? (
         <BookedEmpty />
       ) : (
@@ -86,6 +86,6 @@ export const Booked = props => {
           </ul>
         </div>
       ))}
-    </div>
+    </main>
   );
 };

@@ -7,11 +7,12 @@ export const Modals = props => {
       isOpen={props.isOpen}
       contentLabel="onRequestClose"
       onRequestClose={props.onRequestClose}
-      className="Modal"
+      className={props.className}
       overlayClassName="Overlay"
     >
       {props.text}
-      <button onClick={props.onRequestClose} className="modalClose__btn">
+      {props.img && <img src={props.img} className="img__open__Modal"></img>}
+      <button onClick={props.onRequestClose} className={props.classNameForBtnClose}>
         X
       </button>
     </Modal>

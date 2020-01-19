@@ -5,7 +5,7 @@ import del3 from '../img/Hashi2.JPG';
 import del4 from '../img/Ristorante.JPG';
 export const Services = () => {
   return (
-    <div className="services">
+    <main className="services">
       <h1 className="services__h1">Услуги</h1>
       <p>
         Хотите отправиться в кругосветное путешествие по кухням мира? Вам предложат превосходные
@@ -35,6 +35,6 @@ export const Services = () => {
         Соблазнительная выпечка, свежий хлеб, домашняя паста, аппетитные сыры и колбасные изделия
         отражают разнообразие меню.
       </p>
-    </div>
+    </main>
   );
 };

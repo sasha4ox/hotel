@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { Facebook } from './Facebook';
 import { GoogleMap } from './Map/GoogleMap';
 
 function Contatcs() {
   return (
     <>
-      <div className={'wrapper__contacts'}>
+      <main className={'wrapper__contacts'}>
         <h1 className={'contacts__name'}>Контакты</h1>
         <div className={'contacts__block'}>
           <h3 className={'contacts__bock_name'}>Номера телефонов</h3>
@@ -13,8 +13,9 @@ function Contatcs() {
           <a href="tel:093-674-47-94">093-674-47-94</a>
           <h3 className={'contacts__bock_name'}>Адрес</h3>
           <a href=" https://goo.gl/maps/wvhRMpcVaxkYdruz8">Винница, ул Киевская 7</a>
+          <Facebook />
         </div>
-      </div>
+      </main>
       <GoogleMap center={{ lat: 49.238162, lng: 28.478699 }} zoom={14} />
     </>
   );

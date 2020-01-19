@@ -2,7 +2,7 @@ import React from 'react';
 
 export const About = () => {
   return (
-    <div className={'wrapper__about'}>
+    <main className={'wrapper__about'}>
       <h1 className={'about__name'}>О Нас</h1>
       <p className={'about__text'}>
         Узнайте, что такое настоящее Винницкое гостеприимство и истинная итальянская роскошь,
@@ -30,6 +30,6 @@ export const About = () => {
         номерах, — 40-дюймовые ЖК-телевизоры с плоским экраном, DVD-плееры, многофункциональные
         рабочие станции и принтеры, предоставляемые по запросу
       </p>
-    </div>
+    </main>
   );
 };

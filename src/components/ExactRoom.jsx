@@ -83,7 +83,13 @@ function ExactRoom(props) {
   return (
     <>
       {rooms && <SelectedRoom room={room} />}
-      <Modals isOpen={showModal} onRequestClose={handleCloseModal} text={book} />
+      <Modals
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        text={book}
+        className={'Modal'}
+        classNameForBtnClose={'modalClose__btn'}
+      />
       {room.payload.length > 0 ? (
         <BusyRoom busyRoom={room.payload} onClick={openBusyRoom} isOpen={isOpenBusyRoom} />
       ) : null}

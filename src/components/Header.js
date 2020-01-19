@@ -31,15 +31,26 @@ function Header({ currentUser, handleSignOut }) {
       }
     }
     if (size <= 800) {
-      wrapperhdrNavMobile.addEventListener('click', toggleMobileMenuListener);
+      console.log('Less');
+      wrapperhdrNavMobile.classList.add('Desctop');
+      if (wrapperhdrNavMobile.classList.contains('Desctop')) {
+        wrapperhdrNavMobile.classList.remove('Desctop');
+        wrapperhdrNavMobile.classList.add('Mobile');
+        wrapperhdrNavMobile.addEventListener('click', toggleMobileMenuListener);
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          toggleMobileMenu();
+        });
+      }
     } else if (size > 800) {
-      wrapperhdrNavMobile.removeEventListener('click', toggleMobileMenuListener);
+      console.log('More');
+      wrapperhdrNavMobile.classList.add('Mobile');
+      if (wrapperhdrNavMobile.classList.contains('Mobile')) {
+        wrapperhdrNavMobile.classList.remove('Mobile');
+        wrapperhdrNavMobile.classList.add('Desctop');
+        wrapperhdrNavMobile.removeEventListener('click', toggleMobileMenuListener);
+      }
     }
-
-    mobileMenuBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      toggleMobileMenu();
-    });
   }, [size]);
 
   const signOut = !!currentUser ? (
@@ -100,7 +111,6 @@ function Header({ currentUser, handleSignOut }) {
             </ul>
           </nav>
         </div>
-
         <div className="header__mobile-button" id="mobileMenuBtn">
           <span className="header__mobile-button-line" id="mobileMenuLine1"></span>
           <span className="header__mobile-button-line" id="mobileMenuLine2"></span>

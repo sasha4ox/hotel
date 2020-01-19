@@ -52,7 +52,7 @@ const SignUp = ({ history }) => {
     }
   };
   return (
-    <div className={'wrapper__signUp'}>
+    <main className={'wrapper__signUp'}>
       <h1 className={'signUp__name'}>Зарегистрироваться</h1>
       <form onSubmit={handleSignUp} noValidate>
         <input
@@ -63,11 +63,11 @@ const SignUp = ({ history }) => {
           onChange={changeInput}
           required
         />
-        {!emailIsValid && <p className="inputsError">example@gmail.com</p>}
+        {!emailIsValid && <p className="inputsError">Пример: example@gmail.com</p>}
         <input
           type="password"
           name="password"
-          placeholder="qwerty"
+          placeholder="password"
           value={password}
           onChange={changeInput}
           required
@@ -81,7 +81,7 @@ const SignUp = ({ history }) => {
         </button>
       </form>
       {errorFire && <p className="inputsError">{errorFire}</p>}
-    </div>
+    </main>
   );
 };
 export default withRouter(SignUp);

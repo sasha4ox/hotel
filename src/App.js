@@ -15,6 +15,7 @@ import ExactRoom from './components/ExactRoom';
 import { Booked } from './components/Booked/Booked';
 import getRooms from './functions/getRooms';
 import { AuthContext } from './Auth';
+
 let arrayOfHottel = [
   {
     rooms: 1,
